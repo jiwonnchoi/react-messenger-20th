@@ -8,7 +8,7 @@ import { ReactComponent as VideoIcon } from "../../assets/icons/videocam.svg";
 const TopBar = () => {
   return (
     <>
-      <div className="flex h-[3.5rem] flex-row items-center px-4">
+      <div className="flex h-[3.5rem] flex-row items-center px-[1.25rem]">
         <BackIcon className="mr-[1.19rem] h-6 w-6" />
         <span className="flex w-[15rem] justify-between">
           <div className="flex flex-row items-center">
@@ -30,6 +30,7 @@ const TopBar = () => {
           <VideoIcon />
         </span>
       </div>
+      <hr className="my-[0.62rem] border-t border-[#b6b6b6]" />
     </>
   );
 };
