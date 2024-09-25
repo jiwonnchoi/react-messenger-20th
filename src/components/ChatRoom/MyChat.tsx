@@ -1,8 +1,10 @@
-const MyChat = () => {
+const MyChat = ({ message }: { message: string }) => {
   return (
-    <div className="bg-Gray500 ml-auto inline-flex min-h-[2.125rem] w-auto items-center rounded-[1.25rem] px-[0.625rem] py-[0.5rem] text-[0.9375rem] tracking-tighter text-white">
-      잘 부탁드려요~!
-    </div>
+    <>
+      <div className="mb-[5px] ml-auto inline-flex min-h-[2.125rem] max-w-[13.375rem] items-center break-all rounded-[1.25rem] bg-Gray500 px-[0.625rem] py-[0.5rem] text-[0.9375rem] tracking-tighter text-white">
+        {message}
+      </div>
+    </>
   );
 };
 

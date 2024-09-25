@@ -1,7 +1,14 @@
+import { RecoilRoot } from "recoil";
 import ChatRoomPage from "./pages/ChatRoomPage";
 
 function App() {
-  return <ChatRoomPage />;
+  return (
+    <>
+      <RecoilRoot>
+        <ChatRoomPage />
+      </RecoilRoot>
+    </>
+  );
 }
 
 export default App;
