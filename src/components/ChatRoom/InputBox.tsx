@@ -6,33 +6,35 @@ import { ReactComponent as PictureIcon } from "../../assets/icons/picture.svg";
 import { ReactComponent as GIFIcon } from "../../assets/icons/gif.svg";
 import { ReactComponent as SendButton } from "../../assets/icons/send_button.svg";
 
-interface InputBoxProps {
+interface Props {
   sendChat: (message: string) => void;
 }
 
-const InputBox: React.FC<InputBoxProps> = ({ sendChat }) => {
-  const [inputText, setInputText] = useState("");
+const InputBox: React.FC<Props> = ({ sendChat }) => {
+  const [inputText, setInputText] = useState(""); // 입력한 텍스트
+  const heightRef = useRef<HTMLTextAreaElement>(null); // 입력창 높이 지정
 
+  // 입력 내용 반영
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputText(e.target.value);
   };
 
+  // 입력 내용 전송
   const handleSubmit = () => {
     if (inputText.trim() !== "") {
-      sendChat(inputText); //입력한 메시지를 상위로 전달하기
-      setInputText(""); // 입력값 초기화하기
+      sendChat(inputText);
+      setInputText(""); // 입력창 내용 초기화
       if (heightRef.current) {
-        heightRef.current.style.height = "auto";
+        heightRef.current.style.height = "auto"; // 전송 후 입력창 높이 초기화
       }
     }
   };
 
-  const heightRef = useRef<HTMLTextAreaElement>(null);
-
+  // 입력창 높이 자동 조절
   const handleInputHeight = () => {
     if (heightRef.current) {
-      heightRef.current.style.height = "auto";
-      heightRef.current.style.height = heightRef.current.scrollHeight + "px";
+      heightRef.current.style.height = "auto"; // 기본 높이
+      heightRef.current.style.height = heightRef.current.scrollHeight + "px"; // 줄바꿈 시 변화
     }
   };
 
@@ -40,7 +42,7 @@ const InputBox: React.FC<InputBoxProps> = ({ sendChat }) => {
     <div className="absolute bottom-[2.125rem] left-0 right-0 m-auto flex w-[22.25rem] flex-row items-center gap-[0.5625rem] rounded-[1.25rem] bg-Gray300 px-[0.3125rem] py-[0.25rem]">
       <CameraIcon className="h-[2rem] w-[2rem]" />
       <div
-        onChange={handleInputHeight} // textarea 줄바꿈에 따른 자동 높이 조절
+        onChange={handleInputHeight}
         className="flex w-[17.9375rem] flex-row items-center justify-between gap-[0.3rem]"
       >
         <textarea
@@ -59,7 +61,7 @@ const InputBox: React.FC<InputBoxProps> = ({ sendChat }) => {
               <GIFIcon />
             </>
           ) : (
-            <SendButton onClick={handleSubmit} />
+            <SendButton onClick={handleSubmit} className="self-end" />
           )}
         </div>
       </div>
