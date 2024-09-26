@@ -20,13 +20,22 @@ const InputBox: React.FC<Props> = ({ sendChat }) => {
   };
 
   // 입력 내용 전송
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     if (inputText.trim() !== "") {
       sendChat(inputText);
       setInputText(""); // 입력창 내용 초기화
       if (heightRef.current) {
         heightRef.current.style.height = "auto"; // 전송 후 입력창 높이 초기화
       }
+    }
+  };
+
+  // 입력 내용 엔터키로 전송 (shift + Enter로 줄바꿈)
+  const handleEnterSubmit = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(e);
     }
   };
 
@@ -48,6 +57,7 @@ const InputBox: React.FC<Props> = ({ sendChat }) => {
         <textarea
           value={inputText}
           onChange={handleChange}
+          onKeyDown={handleEnterSubmit}
           ref={heightRef} // textarea에 ref 연결
           placeholder="Send a message"
           className="w-40 flex-grow resize-none bg-transparent caret-[#0584fe] outline-none"

@@ -52,7 +52,7 @@ const TopBar = () => {
           <VideoIcon />
         </span>
       </div>
-      <hr className="my-[0.62rem] border-t border-[#b6b6b6]" />
+      <hr className="mt-[0.62rem] border-t border-[#b6b6b6]" />
     </>
   );
 };

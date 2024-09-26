@@ -7,7 +7,7 @@ const ReceivedChat = ({
 }) => {
   return (
     <>
-      <span className="mb-[5px] flex flex-row items-end">
+      <span className="mt-[5px] flex flex-row items-end">
         <img
           className="h-[1.75rem] w-[1.75rem] rounded-full"
           src={require("../../assets/images/" + profileImg + ".svg")} //props로 넘겨온 상대경로는 깨짐
