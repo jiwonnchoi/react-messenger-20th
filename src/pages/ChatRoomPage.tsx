@@ -9,7 +9,9 @@ const ChatRoomPage = () => {
       <div className="relative h-[812px] w-[375px] bg-white">
         <StatusBar />
         <TopBar />
-        <Chattings />
+        <div className="max-h-[615px] overflow-y-auto">
+          <Chattings />
+        </div>
         <HomeIndicator className="absolute bottom-0" />
       </div>
     </>
