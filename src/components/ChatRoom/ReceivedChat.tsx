@@ -59,16 +59,9 @@ const ReceivedChat: React.FC<ReceivedChatProps> = ({
           )}
 
           <div className="relative">
-            <div className="ml-[0.5rem] mr-auto inline-flex max-w-[13.375rem] select-none items-center break-all rounded-[1.25rem] bg-Chat_BG px-[0.625rem] py-[0.5rem] text-[0.9375rem] tracking-tighter text-white">
+            <div className="ml-[0.5rem] mr-auto inline-flex max-w-[13.375rem] items-center break-all rounded-[1.25rem] bg-Chat_BG px-[0.625rem] py-[0.5rem] text-[0.9375rem] tracking-tighter text-white">
               {message}
             </div>
-            {/* {selectedEmotion && (
-              <>
-                <div className="relative bottom-[8px] left-[8px] z-[5]">
-                  <EmotionRemained emotionId={selectedEmotion} />
-                </div>
-              </>
-            )} */}
             {selectedEmotion && (
               <>
                 <div className="absolute bottom-[-10px] left-[8px] z-[5]">
