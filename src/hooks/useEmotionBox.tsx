@@ -25,16 +25,27 @@ const useEmotionBox = (scrollRef: React.RefObject<HTMLDivElement>) => {
       setSelectedMessage(messageId);
       setShowEmotionBox(true);
 
-      // 감정 박스가 TopBar에 가려지지 않도록 자동 스크롤
       setTimeout(() => {
         if (emotionBoxRef.current && scrollRef.current) {
-          const emotionBoxLocation =
-            emotionBoxRef.current.getBoundingClientRect();
-          const topBarHeight = 200;
+          const emotionBoxRect = emotionBoxRef.current.getBoundingClientRect();
+          const topBarHeight = 100;
+          const emotionBoxHeight = 64;
 
-          if (emotionBoxLocation.top < topBarHeight) {
-            const offset = topBarHeight - emotionBoxLocation.top;
+          // 감정 박스 상단이 TopBar보다 위에 있으면 스크롤을 조정
+          if (emotionBoxRect.top < topBarHeight) {
+            const offset = topBarHeight - emotionBoxRect.top;
             scrollRef.current.scrollBy({ top: -offset, behavior: "smooth" });
+          }
+
+          // 가장 상단이라 더 스크롤되지 않는 경우
+          if (emotionBoxRect.top - emotionBoxHeight < topBarHeight) {
+            emotionBoxRef.current.style.top = `${50}px`;
+            //emotionBoxRef.current.style.top = `${topBarHeight}px`;
+            //emotionBoxRef.current.style.position = "fixed";
+          } else {
+            // 원래 위치 복귀
+            emotionBoxRef.current.style.top = "-67px";
+            emotionBoxRef.current.style.position = "absolute";
           }
         }
       }, 0);
