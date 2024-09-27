@@ -16,3 +16,8 @@ export const chattingState = atom<chattingInterface[]>({
   key: "chattingState",
   default: chattingData.chattings,
 });
+
+export const emotionBoxState = atom<boolean>({
+  key: "emotionBoxState",
+  default: false,
+});

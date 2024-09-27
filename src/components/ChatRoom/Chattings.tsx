@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import InputBox from "./InputBox";
 import MyChat from "./MyChat";
 import ReceivedChat from "./ReceivedChat";
@@ -6,6 +6,7 @@ import ReceivedChat from "./ReceivedChat";
 import { useRecoilState } from "recoil";
 import { chattingState, userAtom } from "../../recoil/atom";
 import { chattingInterface } from "../../types/interface";
+import useEmotion from "../../hooks/useEmotion";
 
 const Chattings = () => {
   const [users, setUsers] = useRecoilState(userAtom); // 채팅 중인 유저 (me, other)
@@ -45,6 +46,15 @@ const Chattings = () => {
     );
   };
 
+  // 반응 남기기
+  const {
+    showEmotionBox,
+    handleLongPress,
+    selectedMessage,
+    handleSelectEmotion,
+    emotionBoxRef,
+  } = useEmotion();
+
   return (
     <>
       <div
@@ -56,9 +66,14 @@ const Chattings = () => {
             <MyChat key={index} message={chat.message} />
           ) : (
             <ReceivedChat
+              onMouseDown={(e) => handleLongPress(index, e)}
               key={index}
               message={chat.message}
               profileImg={users.other.profileImg}
+              showEmotionBox={showEmotionBox && selectedMessage === index}
+              handleSelectEmotion={handleSelectEmotion}
+              emotionBoxRef={emotionBoxRef}
+              isSelected={selectedMessage === index}
             />
           ),
         )}
