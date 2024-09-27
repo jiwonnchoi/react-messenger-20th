@@ -1,9 +1,15 @@
-import { useRecoilValue } from "recoil";
+// components
 import EmotionBox from "./EmotionBox";
 import EmotionRemained from "./EmotionRemained";
+
+// recoil
+import { useRecoilValue } from "recoil";
 import { emotionBoxState } from "../../recoil/atom";
-import useEmotionBox from "../../hooks/useEmotionBox";
+
+// hooks
 import useHandleEmotionSelect from "../../hooks/useHandleEmotionSelect";
+
+import "animate.css";
 
 interface ReceivedChatProps {
   message: string;
@@ -39,7 +45,8 @@ const ReceivedChat: React.FC<ReceivedChatProps> = ({
           <div
             id="emotionBoxRef"
             ref={emotionBoxRef}
-            className="absolute left-1/2 top-[-67px] z-[9999] -translate-x-1/2 transform"
+            style={{ animationDuration: "0.5s", animationIterationCount: 1 }}
+            className="absolute top-[-67px] z-[9999] animate-pulse"
           >
             <EmotionBox onSelectEmotion={selectEmotion} />
           </div>
@@ -64,7 +71,12 @@ const ReceivedChat: React.FC<ReceivedChatProps> = ({
             </div>
             {selectedEmotion && (
               <>
-                <div className="absolute bottom-[-10px] left-[8px] z-[5]">
+                <div
+                  style={{
+                    animationIterationCount: 1,
+                  }}
+                  className="absolute bottom-[-10px] left-[8px] z-[5] animate-bounce"
+                >
                   <EmotionRemained emotionId={selectedEmotion} />
                 </div>
               </>
