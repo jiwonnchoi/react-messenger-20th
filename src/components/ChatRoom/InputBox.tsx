@@ -71,7 +71,10 @@ const InputBox: React.FC<Props> = ({ sendChat }) => {
               <GIFIcon />
             </>
           ) : (
-            <SendButton onClick={handleSubmit} className="self-end" />
+            <SendButton
+              onClick={handleSubmit}
+              className="cursor-pointer self-end"
+            />
           )}
         </div>
       </div>

@@ -38,7 +38,10 @@ const TopBar = () => {
               />
               <ProfileCircle className="absolute left-[-0.25rem] top-[-0.25rem]" />
             </div>
-            <span className="mr-[0.62rem]" onClick={handleChangeUser}>
+            <span
+              className="mr-[0.62rem] cursor-pointer"
+              onClick={handleChangeUser}
+            >
               <div className="text-[1.125rem] font-[590] leading-5 tracking-tighter">
                 {users.other.userName}
               </div>
