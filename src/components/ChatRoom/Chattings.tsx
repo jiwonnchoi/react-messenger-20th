@@ -1,60 +1,24 @@
-import { useEffect, useRef } from "react";
-
 // components
 import InputBox from "./InputBox";
 import MyChat from "./MyChat";
 import ReceivedChat from "./ReceivedChat";
 
 // recoil
-import { useRecoilState, useRecoilValue } from "recoil";
-import {
-  chattingState,
-  selectedEmotionsState,
-  selectedMessageState,
-  userState,
-} from "../../recoil/atom";
-import { chattingInterface } from "../../types/interface";
+import { useRecoilValue } from "recoil";
+import { selectedEmotionsState, selectedMessageState } from "../../recoil/atom";
 
 // hook
+import useAutoScroll from "../../hooks/useAutoScroll";
+import useChatSend from "../../hooks/useChatSend";
 import useEmotion from "../../hooks/useEmotion";
 
 const Chattings = () => {
-  const [users, setUsers] = useRecoilState(userState); // 채팅 중인 유저 (me, other)
-
-  const [chatting, setChatting] = useRecoilState(chattingState);
-  const currentChatting = chatting[0]; // 기본으로 첫 번째 대화 가져오기
-
-  const scrollRef = useRef<HTMLDivElement | null>(null); // 스크롤 영역 요소
+  const { users, currentChatting, sendChat } = useChatSend();
 
   // 하단으로 자동 스크롤
-  useEffect(() => {
-    scrollToBottom();
-  }, [currentChatting.chatList]); // 채팅 메시지 수가 늘어났을 때 반영
+  const scrollRef = useAutoScroll([currentChatting.chatList]);
 
-  const scrollToBottom = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTo({
-        top: scrollRef.current.scrollHeight,
-        behavior: "smooth",
-      });
-    }
-  };
-
-  // 메시지 전송 함수 (InputBox로 전달해서 handleSubmit에 포함)
-  const sendChat = (newMessage: string) => {
-    const updatedChatting = [
-      ...currentChatting.chatList,
-      { message: newMessage, sender: users.me.id },
-    ];
-
-    setChatting((prevChatting: chattingInterface[]) =>
-      prevChatting.map((chat, index) =>
-        index === 0 ? { ...chat, chatList: updatedChatting } : chat,
-      ),
-    );
-  };
-
-  // 반응 남기기
+  // 감정 남기기
   const { handleLongPress, emotionBoxRef } = useEmotion();
 
   const selectedMessage = useRecoilValue(selectedMessageState);
