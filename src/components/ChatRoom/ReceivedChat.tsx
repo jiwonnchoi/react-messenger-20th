@@ -32,7 +32,7 @@ const ReceivedChat: React.FC<ReceivedChatProps> = ({
   return (
     <>
       <div
-        className={`pointer-events-none relative select-none ${isSelected ? "z-20" : "z-0"} ${isLastChat ? "mb-[5px]" : ""}`}
+        className={`relative select-none ${isSelected ? "z-20" : "z-0"} ${isLastChat ? "mb-[5px]" : ""}`}
       >
         {showEmotionBox && isSelected && (
           <div
