@@ -53,7 +53,7 @@ const InputBox: React.FC<InputBoxProps> = ({ sendChat }) => {
       <CameraIcon className="h-[2rem] w-[2rem]" />
       <div
         onChange={handleInputHeight}
-        className="flex w-[17.9375rem] flex-row items-center justify-between gap-[0.3rem]"
+        className="flex w-[18.5rem] flex-row items-center justify-between gap-[0.3rem]"
       >
         <textarea
           value={inputText}

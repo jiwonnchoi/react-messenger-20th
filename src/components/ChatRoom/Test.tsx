@@ -16,7 +16,7 @@ interface ReceivedChatProps {
   emotionBoxRef: React.RefObject<HTMLDivElement>;
 }
 
-const ReceivedChat: React.FC<ReceivedChatProps> = ({
+const Test: React.FC<ReceivedChatProps> = ({
   message,
   profileImg,
   isLastChat,
@@ -38,7 +38,7 @@ const ReceivedChat: React.FC<ReceivedChatProps> = ({
           <div
             id="emotionBoxRef"
             ref={emotionBoxRef}
-            className="absolute top-[-67px] z-[9999]"
+            className="absolute top-[-67px]"
           >
             <EmotionBox onSelectEmotion={selectEmotion} />
           </div>
@@ -58,29 +58,27 @@ const ReceivedChat: React.FC<ReceivedChatProps> = ({
             <div className="h-[1.75rem] w-[1.75rem]"></div>
           )}
 
-          <div className="relative">
-            <div className="ml-[0.5rem] mr-auto inline-flex max-w-[13.375rem] items-center break-all rounded-[1.25rem] bg-Chat_BG px-[0.625rem] py-[0.5rem] text-[0.9375rem] tracking-tighter text-white">
-              {message}
-            </div>
-            {/* {selectedEmotion && (
-              <>
-                <div className="relative bottom-[8px] left-[8px] z-[5]">
-                  <EmotionRemained emotionId={selectedEmotion} />
-                </div>
-              </>
-            )} */}
-            {selectedEmotion && (
-              <>
-                <div className="absolute bottom-[-10px] left-[8px] z-[5]">
-                  <EmotionRemained emotionId={selectedEmotion} />
-                </div>
-              </>
-            )}
+          <div className="ml-[0.5rem] mr-auto inline-flex max-w-[13.375rem] items-center break-all rounded-[1.25rem] bg-Chat_BG px-[0.625rem] py-[0.5rem] text-[0.9375rem] tracking-tighter text-white">
+            {message}
           </div>
+          {/* {selectedEmotion && (
+            <>
+              <div className="bottom-[2px]">
+                <EmotionRemained emotionId={selectedEmotion} />
+              </div>
+            </>
+          )} */}
         </span>
+        {selectedEmotion && (
+          <>
+            <div className="relative bottom-[18px] left-[35px]">
+              <EmotionRemained emotionId={selectedEmotion} />
+            </div>
+          </>
+        )}
       </div>
     </>
   );
 };
 
-export default ReceivedChat;
+export default Test;
