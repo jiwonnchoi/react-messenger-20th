@@ -32,7 +32,8 @@ const ReceivedChat: React.FC<ReceivedChatProps> = ({
   return (
     <>
       <div
-        className={`relative select-none ${isSelected ? "z-20" : "z-0"} ${isLastChat ? "mb-[5px]" : ""}`}
+        onMouseDown={onMouseDown}
+        className={`relative ${isSelected ? "z-20" : "z-0"} ${isLastChat ? "mb-[5px]" : ""}`}
       >
         {showEmotionBox && isSelected && (
           <div
@@ -44,7 +45,6 @@ const ReceivedChat: React.FC<ReceivedChatProps> = ({
           </div>
         )}
         <span
-          onMouseDown={onMouseDown}
           className={`mt-[5px] flex flex-row items-end ${
             selectedEmotion ? "mb-[10px]" : ""
           }`}
@@ -59,7 +59,7 @@ const ReceivedChat: React.FC<ReceivedChatProps> = ({
           )}
 
           <div className="relative">
-            <div className="ml-[0.5rem] mr-auto inline-flex max-w-[13.375rem] items-center break-all rounded-[1.25rem] bg-Chat_BG px-[0.625rem] py-[0.5rem] text-[0.9375rem] tracking-tighter text-white">
+            <div className="ml-[0.5rem] mr-auto inline-flex max-w-[13.375rem] select-none items-center break-all rounded-[1.25rem] bg-Chat_BG px-[0.625rem] py-[0.5rem] text-[0.9375rem] tracking-tighter text-white">
               {message}
             </div>
             {/* {selectedEmotion && (
