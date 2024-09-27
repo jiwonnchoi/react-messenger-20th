@@ -1,20 +1,26 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
+
+// recoil
 import { useRecoilState } from "recoil";
-import { emotionBoxState } from "../recoil/atom";
+import {
+  emotionBoxState,
+  selectedEmotionsState,
+  selectedMessageState,
+} from "../recoil/atom";
 
 const useEmotion = () => {
-  const [selectedMessage, setSelectedMessage] = useState<number | null>(null);
-  const [showEmotionBox, setShowEmotionBox] = useRecoilState(emotionBoxState);
+  const [selectedMessage, setSelectedMessage] =
+    useRecoilState(selectedMessageState); // 감정을 달 메시지
+  const [showEmotionBox, setShowEmotionBox] = useRecoilState(emotionBoxState); // 감정 박스 표시 상태
+  const [selectedEmotions, setSelectedEmotions] = useRecoilState(
+    selectedEmotionsState,
+  ); // 메시지별 선택된 감정들
   const emotionBoxRef = useRef<HTMLDivElement | null>(null);
-
-  // 선택된 감정 저장
-  const [selectedEmotions, setSelectedEmotions] = useState<{
-    [key: number]: number;
-  }>({});
+  // 감정 박스 ref
 
   // 길게 눌러서 감정 박스 표시
   const handleLongPress = (messageId: number, event: React.MouseEvent) => {
-    event.persist();
+    event.persist(); // 선택한 객체의 비동기 이벤트 처리 (null값 방지)
 
     const timerId = setTimeout(() => {
       setSelectedMessage(messageId);
@@ -59,18 +65,16 @@ const useEmotion = () => {
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [setShowEmotionBox]);
 
   return {
-    selectedMessage,
-    showEmotionBox,
     handleLongPress,
     handleSelectEmotion,
     emotionBoxRef,
-    selectedEmotions,
   };
 };
 

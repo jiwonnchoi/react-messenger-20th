@@ -1,35 +1,39 @@
+import { useRecoilValue } from "recoil";
 import EmotionBox from "./EmotionBox";
 import EmotionRemained from "./EmotionRemained";
+import { emotionBoxState } from "../../recoil/atom";
+import useEmotion from "../../hooks/useEmotion";
 
 interface ReceivedChatProps {
   message: string;
   profileImg: string;
-  onMouseDown: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void; // onMouseDown prop 추가
-  showEmotionBox: boolean;
-  handleSelectEmotion: (emotionId: number) => void;
-  emotionBoxRef: React.RefObject<HTMLDivElement>;
+  isLastChat: boolean;
+  /* 감정 달기 관련 */
+  onMouseDown: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   isSelected: boolean;
   selectedEmotion: number | null;
-  isLastChat: boolean;
+  emotionBoxRef: React.RefObject<HTMLDivElement>;
 }
 
 const ReceivedChat: React.FC<ReceivedChatProps> = ({
   message,
   profileImg,
+  isLastChat,
+  /*감정 달기 관련*/
   onMouseDown,
-  showEmotionBox,
-  handleSelectEmotion,
-  emotionBoxRef,
   isSelected,
   selectedEmotion,
-  isLastChat,
+  emotionBoxRef,
 }) => {
+  const showEmotionBox = useRecoilValue(emotionBoxState);
+  const { handleSelectEmotion } = useEmotion();
+
   return (
     <>
       <div
         className={`relative ${isSelected ? "z-20" : "z-0"} ${isLastChat ? "mb-[5px]" : ""}`}
       >
-        {showEmotionBox && (
+        {showEmotionBox && isSelected && (
           <div ref={emotionBoxRef} className="absolute top-[-67px]">
             <EmotionBox onSelectEmotion={handleSelectEmotion} />
           </div>

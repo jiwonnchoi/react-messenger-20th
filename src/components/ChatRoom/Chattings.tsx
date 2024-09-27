@@ -6,8 +6,13 @@ import MyChat from "./MyChat";
 import ReceivedChat from "./ReceivedChat";
 
 // recoil
-import { useRecoilState } from "recoil";
-import { chattingState, userState } from "../../recoil/atom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  chattingState,
+  selectedEmotionsState,
+  selectedMessageState,
+  userState,
+} from "../../recoil/atom";
 import { chattingInterface } from "../../types/interface";
 
 // hook
@@ -50,14 +55,10 @@ const Chattings = () => {
   };
 
   // 반응 남기기
-  const {
-    showEmotionBox,
-    handleLongPress,
-    selectedMessage,
-    handleSelectEmotion,
-    emotionBoxRef,
-    selectedEmotions,
-  } = useEmotion();
+  const { handleLongPress, emotionBoxRef } = useEmotion();
+
+  const selectedMessage = useRecoilValue(selectedMessageState);
+  const selectedEmotions = useRecoilValue(selectedEmotionsState);
 
   return (
     <>
@@ -71,27 +72,26 @@ const Chattings = () => {
               key={index}
               message={chat.message}
               isLastChat={
-                index == currentChatting.chatList.length - 1 ||
+                index === currentChatting.chatList.length - 1 ||
                 (index < currentChatting.chatList.length - 1 &&
                   chat.sender !== currentChatting.chatList[index + 1].sender)
               }
             />
           ) : (
             <ReceivedChat
-              onMouseDown={(e) => handleLongPress(index, e)}
               key={index}
               message={chat.message}
               profileImg={users.other.profileImg}
-              showEmotionBox={showEmotionBox && selectedMessage === index}
-              handleSelectEmotion={handleSelectEmotion}
-              emotionBoxRef={emotionBoxRef}
-              isSelected={selectedMessage === index}
-              selectedEmotion={selectedEmotions[index] || null}
               isLastChat={
                 index === currentChatting.chatList.length - 1 ||
                 (index < currentChatting.chatList.length - 1 &&
                   chat.sender !== currentChatting.chatList[index + 1].sender)
               }
+              /* 감정 달기 관련 */
+              onMouseDown={(e) => handleLongPress(index, e)}
+              isSelected={selectedMessage === index}
+              selectedEmotion={selectedEmotions[index] || null}
+              emotionBoxRef={emotionBoxRef}
             />
           ),
         )}

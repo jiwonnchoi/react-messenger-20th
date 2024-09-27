@@ -22,3 +22,14 @@ export const emotionBoxState = atom<boolean>({
   key: "emotionBoxState",
   default: false,
 });
+
+// useEmotions
+export const selectedMessageState = atom<number | null>({
+  key: "selectedMessageState",
+  default: null,
+});
+
+export const selectedEmotionsState = atom<{ [key: number]: number }>({
+  key: "selectedEmotionsState",
+  default: {},
+});
