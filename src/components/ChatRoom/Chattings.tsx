@@ -7,10 +7,10 @@ import ReceivedChat from "./ReceivedChat";
 import { useRecoilValue } from "recoil";
 import { selectedEmotionsState, selectedMessageState } from "../../recoil/atom";
 
-// hook
+// hooks
 import useAutoScroll from "../../hooks/useAutoScroll";
 import useChatSend from "../../hooks/useChatSend";
-import useEmotion from "../../hooks/useEmotion";
+import useEmotionBox from "../../hooks/useEmotionBox";
 
 const Chattings = () => {
   const { users, currentChatting, sendChat } = useChatSend();
@@ -19,7 +19,7 @@ const Chattings = () => {
   const scrollRef = useAutoScroll([currentChatting.chatList]);
 
   // 감정 남기기
-  const { handleLongPress, emotionBoxRef } = useEmotion();
+  const { handleLongPress, emotionBoxRef } = useEmotionBox(scrollRef);
 
   const selectedMessage = useRecoilValue(selectedMessageState);
   const selectedEmotions = useRecoilValue(selectedEmotionsState);

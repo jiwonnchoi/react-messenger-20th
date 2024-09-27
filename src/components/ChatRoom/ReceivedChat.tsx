@@ -2,7 +2,8 @@ import { useRecoilValue } from "recoil";
 import EmotionBox from "./EmotionBox";
 import EmotionRemained from "./EmotionRemained";
 import { emotionBoxState } from "../../recoil/atom";
-import useEmotion from "../../hooks/useEmotion";
+import useEmotionBox from "../../hooks/useEmotionBox";
+import useHandleEmotionSelect from "../../hooks/useHandleEmotionSelect";
 
 interface ReceivedChatProps {
   message: string;
@@ -26,7 +27,7 @@ const ReceivedChat: React.FC<ReceivedChatProps> = ({
   emotionBoxRef,
 }) => {
   const showEmotionBox = useRecoilValue(emotionBoxState);
-  const { handleSelectEmotion } = useEmotion();
+  const { selectEmotion } = useHandleEmotionSelect();
 
   return (
     <>
@@ -34,8 +35,12 @@ const ReceivedChat: React.FC<ReceivedChatProps> = ({
         className={`relative ${isSelected ? "z-20" : "z-0"} ${isLastChat ? "mb-[5px]" : ""}`}
       >
         {showEmotionBox && isSelected && (
-          <div ref={emotionBoxRef} className="absolute top-[-67px]">
-            <EmotionBox onSelectEmotion={handleSelectEmotion} />
+          <div
+            id="emotionBoxRef"
+            ref={emotionBoxRef}
+            className="absolute top-[-67px]"
+          >
+            <EmotionBox onSelectEmotion={selectEmotion} />
           </div>
         )}
         <span
