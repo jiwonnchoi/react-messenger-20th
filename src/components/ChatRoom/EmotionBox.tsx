@@ -22,7 +22,7 @@ const EmotionBox: React.FC<EmotionBoxProps> = ({ onSelectEmotion }) => {
   ];
   return (
     <>
-      <div className="flex h-[4rem] flex-col items-center rounded-[3.1875rem] bg-white px-[0.625rem] py-[0.3125rem] shadow-xl">
+      <div className="flex h-[4rem] w-[21rem] flex-col items-center rounded-[3.1875rem] bg-white px-[0.625rem] py-[0.3125rem] shadow-xl">
         <div className="text-[0.75rem] text-[#898A8D]">
           Tap and hold to super react
         </div>
