@@ -48,7 +48,7 @@ const InputBox: React.FC<Props> = ({ sendChat }) => {
   };
 
   return (
-    <div className="absolute bottom-[2.125rem] left-0 right-0 m-auto flex w-[22.25rem] flex-row items-center gap-[0.5625rem] rounded-[1.25rem] bg-Gray300 px-[0.3125rem] py-[0.25rem]">
+    <div className="absolute bottom-0 left-0 right-0 m-auto flex w-[22.25rem] flex-row items-center gap-[0.5625rem] rounded-[1.25rem] bg-Gray300 px-[0.3125rem] py-[0.25rem]">
       <CameraIcon className="h-[2rem] w-[2rem]" />
       <div
         onChange={handleInputHeight}
