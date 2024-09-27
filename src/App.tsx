@@ -9,11 +9,13 @@ function App() {
   return (
     <>
       <RecoilRoot>
+        {/*브라우저 뷰 (상하단 바 포함)*/}
         <BrowserView>
           <StatusBar />
           <ChatRoomPage />
           <HomeIndicator />
         </BrowserView>
+        {/*모바일 뷰*/}
         <MobileView>
           <ChatRoomPage />
         </MobileView>

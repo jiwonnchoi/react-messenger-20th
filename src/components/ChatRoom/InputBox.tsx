@@ -1,16 +1,17 @@
 import { useRef, useState } from "react";
 
+// icons
 import { ReactComponent as CameraIcon } from "../../assets/icons/camera.svg";
 import { ReactComponent as MicIcon } from "../../assets/icons/mic.svg";
 import { ReactComponent as PictureIcon } from "../../assets/icons/picture.svg";
 import { ReactComponent as GIFIcon } from "../../assets/icons/gif.svg";
 import { ReactComponent as SendButton } from "../../assets/icons/send_button.svg";
 
-interface Props {
+interface InputBoxProps {
   sendChat: (message: string) => void;
 }
 
-const InputBox: React.FC<Props> = ({ sendChat }) => {
+const InputBox: React.FC<InputBoxProps> = ({ sendChat }) => {
   const [inputText, setInputText] = useState(""); // 입력한 텍스트
   const heightRef = useRef<HTMLTextAreaElement>(null); // 입력창 높이 지정
 
@@ -31,7 +32,7 @@ const InputBox: React.FC<Props> = ({ sendChat }) => {
     }
   };
 
-  // 입력 내용 엔터키로 전송 (shift + Enter로 줄바꿈)
+  // 입력 내용 엔터키로 전송 (shift + Enter로 줄바꿈 가능)
   const handleEnterSubmit = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();

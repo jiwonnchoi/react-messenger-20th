@@ -1,11 +1,12 @@
 // icons
-import { ReactComponent as ProfileImg } from "../../assets/images/profile_img.svg";
 import { ReactComponent as ProfileCircle } from "../../assets/icons/ellipse.svg";
 import { ReactComponent as BackIcon } from "../../assets/icons/back.svg";
 import { ReactComponent as ArrowIcon } from "../../assets/icons/arrow.svg";
 import { ReactComponent as PhoneIcon } from "../../assets/icons/phone.svg";
 import { ReactComponent as VideoIcon } from "../../assets/icons/videocam.svg";
-import { userAtom } from "../../recoil/atom";
+
+// recoil
+import { userState } from "../../recoil/atom";
 import { useRecoilState } from "recoil";
 import { userInterface } from "../../types/interface";
 
@@ -13,7 +14,7 @@ const TopBar = () => {
   const [users, setUsers] = useRecoilState<{
     me: userInterface;
     other: userInterface;
-  }>(userAtom);
+  }>(userState);
 
   // 유저 전환
   const handleChangeUser = () => {

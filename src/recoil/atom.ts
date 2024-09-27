@@ -4,8 +4,8 @@ import chattingData from "../data/ChattingData.json";
 
 import type { chattingInterface, userInterface } from "../types/interface";
 
-export const userAtom = atom<{ me: userInterface; other: userInterface }>({
-  key: "userAtom",
+export const userState = atom<{ me: userInterface; other: userInterface }>({
+  key: "userState",
   default: {
     me: userData.users[0],
     other: userData.users[1],
@@ -18,6 +18,7 @@ export const chattingState = atom<chattingInterface[]>({
 });
 
 export const emotionBoxState = atom<boolean>({
+  // 감정 박스 보이는지 상태
   key: "emotionBoxState",
   default: false,
 });

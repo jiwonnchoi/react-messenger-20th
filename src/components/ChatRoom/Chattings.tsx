@@ -1,15 +1,20 @@
 import { useEffect, useRef } from "react";
+
+// components
 import InputBox from "./InputBox";
 import MyChat from "./MyChat";
 import ReceivedChat from "./ReceivedChat";
 
+// recoil
 import { useRecoilState } from "recoil";
-import { chattingState, userAtom } from "../../recoil/atom";
+import { chattingState, userState } from "../../recoil/atom";
 import { chattingInterface } from "../../types/interface";
+
+// hook
 import useEmotion from "../../hooks/useEmotion";
 
 const Chattings = () => {
-  const [users, setUsers] = useRecoilState(userAtom); // 채팅 중인 유저 (me, other)
+  const [users, setUsers] = useRecoilState(userState); // 채팅 중인 유저 (me, other)
 
   const [chatting, setChatting] = useRecoilState(chattingState);
   const currentChatting = chatting[0]; // 기본으로 첫 번째 대화 가져오기
@@ -19,18 +24,18 @@ const Chattings = () => {
   // 하단으로 자동 스크롤
   useEffect(() => {
     scrollToBottom();
-  }, [currentChatting.chatList]); // 채팅 메시지 수가 늘어났을 때
+  }, [currentChatting.chatList]); // 채팅 메시지 수가 늘어났을 때 반영
 
   const scrollToBottom = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollTo({
         top: scrollRef.current.scrollHeight,
-        behavior: "smooth", // 부드러운 스크롤
+        behavior: "smooth",
       });
     }
   };
 
-  // 메시지 전송 (하위 컴포넌트 InputBox로 보내서 handleSubmit에 포함)
+  // 메시지 전송 함수 (InputBox로 전달해서 handleSubmit에 포함)
   const sendChat = (newMessage: string) => {
     const updatedChatting = [
       ...currentChatting.chatList,
@@ -83,7 +88,7 @@ const Chattings = () => {
               isSelected={selectedMessage === index}
               selectedEmotion={selectedEmotions[index] || null}
               isLastChat={
-                index == currentChatting.chatList.length - 1 ||
+                index === currentChatting.chatList.length - 1 ||
                 (index < currentChatting.chatList.length - 1 &&
                   chat.sender !== currentChatting.chatList[index + 1].sender)
               }

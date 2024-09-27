@@ -8,10 +8,6 @@ const useEmotion = () => {
   const emotionBoxRef = useRef<HTMLDivElement | null>(null);
 
   // 선택된 감정 저장
-  // const [selectedEmotion, setSelectedEmotion] = useState<{
-  //   messageId: number;
-  //   emotionId: number;
-  // } | null>(null);
   const [selectedEmotions, setSelectedEmotions] = useState<{
     [key: number]: number;
   }>({});
