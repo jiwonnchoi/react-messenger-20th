@@ -62,7 +62,15 @@ const Chattings = () => {
       >
         {currentChatting.chatList.map((chat, index) =>
           chat.sender === users.me.id ? (
-            <MyChat key={index} message={chat.message} />
+            <MyChat
+              key={index}
+              message={chat.message}
+              isLastChat={
+                index == currentChatting.chatList.length - 1 ||
+                (index < currentChatting.chatList.length - 1 &&
+                  chat.sender !== currentChatting.chatList[index + 1].sender)
+              }
+            />
           ) : (
             <ReceivedChat
               onMouseDown={(e) => handleLongPress(index, e)}

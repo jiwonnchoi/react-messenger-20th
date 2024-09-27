@@ -26,7 +26,9 @@ const ReceivedChat: React.FC<ReceivedChatProps> = ({
 }) => {
   return (
     <>
-      <div className={`relative ${isSelected ? "z-20" : "z-0"}`}>
+      <div
+        className={`relative ${isSelected ? "z-20" : "z-0"} ${isLastChat ? "mb-[5px]" : ""}`}
+      >
         {showEmotionBox && (
           <div ref={emotionBoxRef} className="absolute top-[-67px]">
             <EmotionBox onSelectEmotion={handleSelectEmotion} />
