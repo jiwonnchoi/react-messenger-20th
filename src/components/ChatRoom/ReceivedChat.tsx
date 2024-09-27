@@ -9,6 +9,7 @@ interface ReceivedChatProps {
   handleSelectEmotion: (emotionId: number) => void;
   emotionBoxRef: React.RefObject<HTMLDivElement>;
   isSelected: boolean;
+  selectedEmotion: number | null;
 }
 
 const ReceivedChat: React.FC<ReceivedChatProps> = ({
@@ -19,6 +20,7 @@ const ReceivedChat: React.FC<ReceivedChatProps> = ({
   handleSelectEmotion,
   emotionBoxRef,
   isSelected,
+  selectedEmotion,
 }) => {
   return (
     <>
@@ -30,7 +32,7 @@ const ReceivedChat: React.FC<ReceivedChatProps> = ({
         )}
         <span
           onMouseDown={onMouseDown}
-          className="mt-[5px] flex flex-row items-end"
+          className={`mt-[5px] flex flex-row items-end`}
         >
           <img
             className="h-[1.75rem] w-[1.75rem] rounded-full"
@@ -40,6 +42,12 @@ const ReceivedChat: React.FC<ReceivedChatProps> = ({
             {message}
           </div>
         </span>
+        {/* {selectedEmotion && <EmotionRemained emotionId={selectedEmotion} />} */}
+        {selectedEmotion && (
+          <div className="ml-[35px]">
+            <EmotionRemained emotionId={selectedEmotion} />
+          </div>
+        )}
       </div>
     </>
   );

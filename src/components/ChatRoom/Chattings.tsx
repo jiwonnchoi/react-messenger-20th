@@ -19,7 +19,6 @@ const Chattings = () => {
   // 하단으로 자동 스크롤
   useEffect(() => {
     scrollToBottom();
-    console.log("useEffect");
   }, [currentChatting.chatList]); // 채팅 메시지 수가 늘어났을 때
 
   const scrollToBottom = () => {
@@ -28,7 +27,6 @@ const Chattings = () => {
         top: scrollRef.current.scrollHeight,
         behavior: "smooth", // 부드러운 스크롤
       });
-      console.log(scrollRef.current.scrollHeight);
     }
   };
 
@@ -53,6 +51,7 @@ const Chattings = () => {
     selectedMessage,
     handleSelectEmotion,
     emotionBoxRef,
+    selectedEmotion,
   } = useEmotion();
 
   return (
@@ -74,6 +73,11 @@ const Chattings = () => {
               handleSelectEmotion={handleSelectEmotion}
               emotionBoxRef={emotionBoxRef}
               isSelected={selectedMessage === index}
+              selectedEmotion={
+                selectedEmotion?.messageId === index
+                  ? selectedEmotion.emotionId
+                  : null
+              }
             />
           ),
         )}
