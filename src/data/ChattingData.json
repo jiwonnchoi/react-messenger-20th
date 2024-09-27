@@ -5,7 +5,15 @@
       "users": [0, 1],
       "chatList": [
         {
-          "message": "안녕하세요~! 잘 부탁드립니다!!",
+          "message": "안녕하세용",
+          "sender": 1
+        },
+        {
+          "message": "안녕하세요!",
+          "sender": 0
+        },
+        {
+          "message": "잘 부탁드립니다!!",
           "sender": 1
         },
         {

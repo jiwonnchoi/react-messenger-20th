@@ -61,7 +61,7 @@ const InputBox: React.FC<InputBoxProps> = ({ sendChat }) => {
           onKeyDown={handleEnterSubmit}
           ref={heightRef} // textarea에 ref 연결
           placeholder="Send a message"
-          className="w-40 flex-grow resize-none bg-transparent caret-[#0584fe] outline-none"
+          className="w-40 flex-grow select-none resize-none bg-transparent caret-[#0584fe] outline-none"
           rows={1}
         />
         <div className="flex flex-row gap-[0.94rem]">
