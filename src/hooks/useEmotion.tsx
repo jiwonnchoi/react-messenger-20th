@@ -8,10 +8,13 @@ const useEmotion = () => {
   const emotionBoxRef = useRef<HTMLDivElement | null>(null);
 
   // 선택된 감정 저장
-  const [selectedEmotion, setSelectedEmotion] = useState<{
-    messageId: number;
-    emotionId: number;
-  } | null>(null);
+  // const [selectedEmotion, setSelectedEmotion] = useState<{
+  //   messageId: number;
+  //   emotionId: number;
+  // } | null>(null);
+  const [selectedEmotions, setSelectedEmotions] = useState<{
+    [key: number]: number;
+  }>({});
 
   // 길게 눌러서 감정 박스 표시
   const handleLongPress = (messageId: number, event: React.MouseEvent) => {
@@ -32,15 +35,19 @@ const useEmotion = () => {
   // 감정 선택
   const handleSelectEmotion = (emotionId: number) => {
     if (selectedMessage !== null) {
-      if (
-        selectedEmotion &&
-        selectedEmotion.messageId === selectedMessage &&
-        selectedEmotion.emotionId === emotionId
-      ) {
-        setSelectedEmotion(null);
-      } else {
-        setSelectedEmotion({ messageId: selectedMessage, emotionId });
-      }
+      setSelectedEmotions((prevEmotions) => {
+        // 이미 선택된 감정이 동일한 경우 해제
+        if (prevEmotions[selectedMessage] === emotionId) {
+          const updatedEmotions = { ...prevEmotions };
+          delete updatedEmotions[selectedMessage];
+          return updatedEmotions;
+        }
+
+        return {
+          ...prevEmotions,
+          [selectedMessage]: emotionId,
+        };
+      });
       setShowEmotionBox(false);
     }
   };
@@ -67,7 +74,7 @@ const useEmotion = () => {
     handleLongPress,
     handleSelectEmotion,
     emotionBoxRef,
-    selectedEmotion,
+    selectedEmotions,
   };
 };
 

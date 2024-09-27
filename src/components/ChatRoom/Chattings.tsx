@@ -51,7 +51,7 @@ const Chattings = () => {
     selectedMessage,
     handleSelectEmotion,
     emotionBoxRef,
-    selectedEmotion,
+    selectedEmotions,
   } = useEmotion();
 
   return (
@@ -81,11 +81,7 @@ const Chattings = () => {
               handleSelectEmotion={handleSelectEmotion}
               emotionBoxRef={emotionBoxRef}
               isSelected={selectedMessage === index}
-              selectedEmotion={
-                selectedEmotion?.messageId === index
-                  ? selectedEmotion.emotionId
-                  : null
-              }
+              selectedEmotion={selectedEmotions[index] || null}
               isLastChat={
                 index == currentChatting.chatList.length - 1 ||
                 (index < currentChatting.chatList.length - 1 &&
