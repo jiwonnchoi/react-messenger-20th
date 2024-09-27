@@ -78,6 +78,11 @@ const Chattings = () => {
                   ? selectedEmotion.emotionId
                   : null
               }
+              isLastChat={
+                index == currentChatting.chatList.length - 1 ||
+                (index < currentChatting.chatList.length - 1 &&
+                  chat.sender !== currentChatting.chatList[index + 1].sender)
+              }
             />
           ),
         )}
