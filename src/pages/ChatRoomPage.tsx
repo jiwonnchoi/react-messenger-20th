@@ -15,7 +15,13 @@ const ChatRoomPage = () => {
 
   useEffect(() => {
     const handleHeight = () => {
-      setHeight(isMobile ? `${window.innerHeight}px` : "733px");
+      if (isMobile) {
+        setHeight(`${window.innerHeight}px`);
+      } else {
+        setHeight(
+          window.innerHeight > 813 ? "733px" : `${window.innerHeight - 80}px`,
+        );
+      }
     };
 
     handleHeight(); // 처음 로드 시 높이 설정

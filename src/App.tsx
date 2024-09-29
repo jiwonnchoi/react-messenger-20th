@@ -11,9 +11,11 @@ function App() {
       <RecoilRoot>
         {/*브라우저 뷰 (상하단 바 포함)*/}
         <BrowserView>
-          <StatusBar />
-          <ChatRoomPage />
-          <HomeIndicator />
+          <div className="flex min-h-screen w-dvw flex-col items-center justify-center">
+            <StatusBar />
+            <ChatRoomPage />
+            <HomeIndicator />
+          </div>
         </BrowserView>
         {/*모바일 뷰*/}
         <MobileView>
