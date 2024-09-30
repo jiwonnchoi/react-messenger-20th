@@ -74,7 +74,8 @@ const InputBox: React.FC<InputBoxProps> = ({ sendChat }) => {
           ) : (
             <SendButton
               onClick={handleSubmit}
-              className="cursor-pointer self-end"
+              style={{ animationDuration: "0.3s", animationIterationCount: 1 }}
+              className="animate__animated animate__slideInLeft cursor-pointer self-end"
             />
           )}
         </div>
