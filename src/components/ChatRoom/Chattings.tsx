@@ -28,7 +28,7 @@ const Chattings = () => {
     <>
       <div
         ref={scrollRef}
-        className="ml-[0.56rem] flex max-h-[623px] flex-col overflow-y-auto"
+        className="ml-[0.56rem] flex max-h-[38.9375rem] flex-col overflow-y-auto"
       >
         {currentChatting.chatList.map((chat, index) =>
           chat.sender === users.me.id ? (

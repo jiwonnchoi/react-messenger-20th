@@ -26,18 +26,18 @@ const TopBar = () => {
 
   return (
     <>
-      <div className="flex h-[3.5rem] flex-row items-center px-[1.25rem]">
+      <div className="flex h-14 flex-row items-center px-6">
         <BackIcon className="mr-[1.19rem] h-6 w-6" />
-        <span className="flex w-[15rem] justify-between">
+        <span className="flex w-60 justify-between">
           <div className="flex flex-row items-center">
             <div className="relative mr-[0.63rem]">
               <img
                 src={require(
                   "../../assets/images/" + users.other.profileImg + ".svg",
                 )}
-                className="h-[2.5rem] w-[2.5rem] rounded-full border-[0.5px] border-Gray500"
+                className="h-10 w-10 rounded-full border-[0.5px] border-Gray500"
               />
-              <ProfileCircle className="absolute left-[-0.25rem] top-[-0.25rem]" />
+              <ProfileCircle className="absolute -left-1 -top-1" />
             </div>
             <span
               className="mr-[0.62rem] cursor-pointer"

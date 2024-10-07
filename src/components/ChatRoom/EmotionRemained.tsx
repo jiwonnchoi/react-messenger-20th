@@ -25,7 +25,7 @@ const EmotionRemained: React.FC<EmotionRemainedProps> = ({ emotionId }) => {
 
   return (
     <div className="h-[1.125rem] w-[1.375rem] rounded-[1.625rem] border border-solid border-white bg-Chat_BG px-[0.31rem] py-[0.19rem]">
-      <img className="w-[0.75rem]" src={emotionIcon?.src} alt="emotion" />
+      <img className="w-3" src={emotionIcon?.src} alt="emotion" />
     </div>
   );
 };
