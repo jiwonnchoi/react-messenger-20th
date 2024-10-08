@@ -1,7 +1,11 @@
+import Footer from "../components/common/Footer";
+
 const FollowListPage = () => {
   return (
     <>
-      <div>FollowListPage</div>
+      <div className="relative flex h-full flex-col">
+        <Footer />
+      </div>
     </>
   );
 };
