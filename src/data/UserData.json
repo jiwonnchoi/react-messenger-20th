@@ -2,14 +2,38 @@
   "users": [
     {
       "id": 0,
+      "userName": "장윤정",
+      "userId": "jngynjng",
+      "profileImg": "profile_img"
+    },
+    {
+      "id": 1,
       "userName": "최지원",
       "userId": "jiwwonn__",
       "profileImg": "profile_img2"
     },
     {
-      "id": 1,
-      "userName": "장윤정",
-      "userId": "jngynjng",
+      "id": 2,
+      "userName": "CEOS",
+      "userId": "ceos.shinchon",
+      "profileImg": "profile_img"
+    },
+    {
+      "id": 3,
+      "userName": "홍익대학교",
+      "userId": "hongik_university",
+      "profileImg": "profile_img"
+    },
+    {
+      "id": 4,
+      "userName": "이화여자대학교",
+      "userId": "ewha.w.univ",
+      "profileImg": "profile_img"
+    },
+    {
+      "id": 5,
+      "userName": "NewJeans",
+      "userId": "newjeans_official",
       "profileImg": "profile_img"
     }
   ]
