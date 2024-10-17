@@ -1,11 +1,37 @@
 import { useNavigate } from "react-router-dom";
 import { userInterface } from "../../types/interface";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import {
+  chattingState,
+  currentChattingState,
+  userState,
+} from "../../recoil/atom";
+import userData from "../../data/UserData.json";
 
 interface FollowerProps {
   user: userInterface;
 }
+
 const Follower: React.FC<FollowerProps> = ({ user }) => {
   const navigate = useNavigate();
+
+  const [chattings] = useRecoilState(chattingState);
+  const setCurrentChatting = useSetRecoilState(currentChattingState);
+  const setCurrentUsers = useSetRecoilState(userState);
+
+  const gotoChatRoom = () => {
+    const selectedChatting =
+      chattings.find(
+        (chat) => chat.users.includes(0) && chat.users.includes(user.id),
+      ) || chattings[0];
+    setCurrentChatting(selectedChatting);
+
+    setCurrentUsers((prev) => ({
+      ...prev,
+      other: userData.users[user.id],
+    }));
+    navigate("/chatroom");
+  };
 
   return (
     <>
@@ -23,7 +49,7 @@ const Follower: React.FC<FollowerProps> = ({ user }) => {
           </span>
         </span>
         <span
-          onClick={() => navigate("/chatroom")}
+          onClick={() => gotoChatRoom()}
           className="h-6 w-[4.4375rem] cursor-pointer rounded-[0.3125rem] bg-Gray200 px-[0.625rem] py-[0.3125rem] text-xs"
         >
           Message
