@@ -9,6 +9,7 @@ import { ReactComponent as VideoIcon } from "../../assets/icons/videocam.svg";
 import { userState } from "../../recoil/atom";
 import { useRecoilState } from "recoil";
 import { userInterface } from "../../types/interface";
+import { useNavigate } from "react-router-dom";
 
 const TopBar = () => {
   const [users, setUsers] = useRecoilState<{
@@ -24,10 +25,15 @@ const TopBar = () => {
     }));
   };
 
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="flex h-14 flex-row items-center px-6">
-        <BackIcon className="mr-[1.19rem] h-6 w-6" />
+        <BackIcon
+          onClick={() => navigate(-1)}
+          className="mr-[1.19rem] h-6 w-6 cursor-pointer"
+        />
         <span className="flex w-60 justify-between">
           <div className="flex flex-row items-center">
             <div className="relative mr-[0.63rem]">

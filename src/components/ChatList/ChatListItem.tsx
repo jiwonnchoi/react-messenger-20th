@@ -1,7 +1,13 @@
-import { chattingInterface } from "../../types/interface";
-import userData from "../../data/UserData.json";
-import { ReactComponent as CameraIcon } from "../../assets/icons/camera_gray.svg";
 import { useNavigate } from "react-router-dom";
+
+// icons
+import { ReactComponent as CameraIcon } from "../../assets/icons/camera_gray.svg";
+
+// data & recoil
+import userData from "../../data/UserData.json";
+import { chattingInterface } from "../../types/interface";
+import { useSetRecoilState } from "recoil";
+import { currentChattingState, userState } from "../../recoil/atom";
 
 interface ChatListItemProps {
   chatting: chattingInterface;
@@ -17,6 +23,20 @@ const ChatListItem: React.FC<ChatListItemProps> = ({ chatting }) => {
 
   const navigate = useNavigate();
 
+  const setCurrentChatting = useSetRecoilState(currentChattingState);
+  const setCurrentUsers = useSetRecoilState(userState);
+
+  const gotoChatRoom = () => {
+    setCurrentChatting(chatting);
+
+    const otherUserId = chatting.users.find((userId) => userId !== 0) || 1;
+    setCurrentUsers((prev) => ({
+      ...prev,
+      other: userData.users[otherUserId],
+    }));
+    navigate("/chatroom");
+  };
+
   return (
     <>
       <div className="flex w-full flex-row gap-2 py-2">
@@ -26,7 +46,7 @@ const ChatListItem: React.FC<ChatListItemProps> = ({ chatting }) => {
         />
         <span className="flex w-full flex-row items-center justify-between gap-[1.88rem]">
           <span
-            onClick={() => navigate("/chatroom")}
+            onClick={() => gotoChatRoom()}
             className="flex flex-grow cursor-pointer flex-col"
           >
             <div className="text-[0.8125rem] font-semibold tracking-tighter">

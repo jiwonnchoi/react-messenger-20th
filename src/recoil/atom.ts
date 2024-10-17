@@ -17,6 +17,11 @@ export const chattingState = atom<chattingInterface[]>({
   default: chattingData.chattings,
 });
 
+export const currentChattingState = atom<chattingInterface>({
+  key: "currentChattingState",
+  default: chattingData.chattings[0],
+});
+
 export const emotionBoxState = atom<boolean>({
   // 감정 박스 보이는지 상태
   key: "emotionBoxState",

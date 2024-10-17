@@ -1,3 +1,4 @@
+// icons
 import { ReactComponent as BackIcon } from "../../assets/icons/back.svg";
 import { ReactComponent as ArrowIcon } from "../../assets/icons/arrow.svg";
 import { ReactComponent as EditIcon } from "../../assets/icons/edit.svg";

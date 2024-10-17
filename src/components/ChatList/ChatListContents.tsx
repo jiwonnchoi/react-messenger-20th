@@ -1,7 +1,11 @@
-import { useRecoilValue } from "recoil";
+// components
+import ChatListItem from "./ChatListItem";
+
+// icons
 import { ReactComponent as SearchIcon } from "../../assets/icons/search.svg";
 
-import ChatListItem from "./ChatListItem";
+// reoil
+import { useRecoilValue } from "recoil";
 import { chattingState, userState } from "../../recoil/atom";
 
 const ChatListContents = () => {

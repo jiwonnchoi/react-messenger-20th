@@ -1,12 +1,14 @@
 import { useRecoilState } from "recoil";
-import { chattingState, userState } from "../recoil/atom";
+import { chattingState, currentChattingState, userState } from "../recoil/atom";
 import { chattingInterface } from "../types/interface";
 
 const useChatSend = () => {
   const [users, setUsers] = useRecoilState(userState);
 
   const [chatting, setChatting] = useRecoilState(chattingState);
-  const currentChatting = chatting[0]; // 기본으로 첫 번째 대화 가져오기
+  //const currentChatting = chatting[0]; // 기본으로 첫 번째 대화 가져오기
+  const [currentChatting, setCurrentChatting] =
+    useRecoilState(currentChattingState);
 
   // 메시지 전송 함수
   const sendChat = (newMessage: string) => {
