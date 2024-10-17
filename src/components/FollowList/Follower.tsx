@@ -23,11 +23,11 @@ const Follower: React.FC<FollowerProps> = ({ user }) => {
     const selectedChatting =
       chattings.find(
         (chat) => chat.users.includes(0) && chat.users.includes(user.id),
-      ) || chattings[0];
+      ) || chattings[0]; // 기존 대화 없을 때 기본 화면 처리하기
     setCurrentChatting(selectedChatting);
 
-    setCurrentUsers((prev) => ({
-      ...prev,
+    setCurrentUsers(() => ({
+      me: userData.users[0],
       other: userData.users[user.id],
     }));
     navigate("/chatroom");

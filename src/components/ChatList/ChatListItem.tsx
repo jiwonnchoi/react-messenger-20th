@@ -31,7 +31,7 @@ const ChatListItem: React.FC<ChatListItemProps> = ({ chatting }) => {
 
     const otherUserId = chatting.users.find((userId) => userId !== 0) || 1;
     setCurrentUsers((prev) => ({
-      ...prev,
+      me: userData.users[0],
       other: userData.users[otherUserId],
     }));
     navigate("/chatroom");
