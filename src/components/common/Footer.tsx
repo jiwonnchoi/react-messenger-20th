@@ -12,7 +12,10 @@ const Footer = () => {
       <div className="relative mt-auto flex w-full flex-row items-center justify-center gap-10 p-2.5 shadow-[0_-4px_20px_0_rgba(0,0,0,0.15)]">
         <HomeIcon />
         <SearchIcon />
-        <MessageIcon />
+        <MessageIcon
+          className="cursor-pointer"
+          onClick={() => navigate("/chatlist")}
+        />
         <ProfileIcon className="cursor-pointer" onClick={() => navigate("/")} />
         <MoreIcon />
       </div>

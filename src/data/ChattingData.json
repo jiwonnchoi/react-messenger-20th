@@ -1,7 +1,7 @@
 {
   "chattings": [
     {
-      "chattingId": 0,
+      "id": 1,
       "users": [0, 1],
       "chatList": [
         {
@@ -39,20 +39,30 @@
       ]
     },
     {
-      "chattingId": 1,
-      "users": [0, 1],
+      "id": 2,
+      "users": [0, 2],
       "chatList": [
         {
-          "message": "안녕안녕!",
-          "sender": 1
+          "message": "헤어지자고?",
+          "sender": 2
         },
         {
-          "message": "점심먹었어?",
+          "message": "너 누군데",
+          "sender": 2
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "users": [0, 3],
+      "chatList": [
+        {
+          "message": "너는 무슨 헤어지자는 말을",
           "sender": 0
         },
         {
-          "message": "아직 ㅠㅠ",
-          "sender": 1
+          "message": "나 밥 볶을 때 하니",
+          "sender": 0
         }
       ]
     }

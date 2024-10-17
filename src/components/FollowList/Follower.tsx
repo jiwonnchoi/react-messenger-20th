@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import { userInterface } from "../../types/interface";
 
 interface FollowerProps {
   user: userInterface;
 }
 const Follower: React.FC<FollowerProps> = ({ user }) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <span className="flex w-full flex-row items-center justify-between px-4 py-[0.625rem]">
@@ -19,7 +22,10 @@ const Follower: React.FC<FollowerProps> = ({ user }) => {
             <div className="text-[0.8125rem] text-Gray500">{user.userId}</div>
           </span>
         </span>
-        <span className="h-6 w-[4.4375rem] rounded-[0.3125rem] bg-Gray200 px-[0.625rem] py-[0.3125rem] text-xs">
+        <span
+          onClick={() => navigate("/chatroom")}
+          className="h-6 w-[4.4375rem] cursor-pointer rounded-[0.3125rem] bg-Gray200 px-[0.625rem] py-[0.3125rem] text-xs"
+        >
           Message
         </span>
       </span>
