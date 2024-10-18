@@ -27,11 +27,6 @@ const useChatSend = () => {
     ];
 
     // setChatting((prevChatting: chattingInterface[]) =>
-    //   prevChatting.map((chat, index) =>
-    //     index === 0 ? { ...chat, chatList: updatedChatting } : chat,
-    //   ),
-    // );
-    // setChatting((prevChatting: chattingInterface[]) =>
     //   prevChatting.map((chat) =>
     //     chat.id === currentChatting.id
     //       ? { ...chat, chatList: updatedChatting }

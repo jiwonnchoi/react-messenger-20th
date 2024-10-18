@@ -24,40 +24,47 @@ const Chattings = () => {
   const selectedMessage = useRecoilValue(selectedMessageState);
   const selectedEmotions = useRecoilValue(selectedEmotionsState);
 
+  // 이전 대화 존재 확인
+  const isFirst = currentChatting.chatList.length === 0;
+
   return (
     <>
       <div
         ref={scrollRef}
         className="ml-[0.56rem] flex max-h-[38.9375rem] flex-col overflow-y-auto"
       >
-        {currentChatting.chatList.map((chat, index) =>
-          chat.sender === users.me.id ? (
-            <MyChat
-              key={index}
-              message={chat.message}
-              isLastChat={
-                index === currentChatting.chatList.length - 1 ||
-                (index < currentChatting.chatList.length - 1 &&
-                  chat.sender !== currentChatting.chatList[index + 1].sender)
-              }
-            />
-          ) : (
-            <ReceivedChat
-              key={index}
-              message={chat.message}
-              profileImg={users.other.profileImg}
-              isLastChat={
-                index === currentChatting.chatList.length - 1 ||
-                (index < currentChatting.chatList.length - 1 &&
-                  chat.sender !== currentChatting.chatList[index + 1].sender)
-              }
-              /* 감정 달기 관련 */
-              onMouseDown={(e) => handleLongPress(index, e)}
-              isSelected={selectedMessage === index}
-              selectedEmotion={selectedEmotions[index] || null}
-              emotionBoxRef={emotionBoxRef}
-            />
-          ),
+        {currentChatting.chatList.length > 0 ? (
+          currentChatting.chatList.map((chat, index) =>
+            chat.sender === users.me.id ? (
+              <MyChat
+                key={index}
+                message={chat.message}
+                isLastChat={
+                  index === currentChatting.chatList.length - 1 ||
+                  (index < currentChatting.chatList.length - 1 &&
+                    chat.sender !== currentChatting.chatList[index + 1].sender)
+                }
+              />
+            ) : (
+              <ReceivedChat
+                key={index}
+                message={chat.message}
+                profileImg={users.other.profileImg}
+                isLastChat={
+                  index === currentChatting.chatList.length - 1 ||
+                  (index < currentChatting.chatList.length - 1 &&
+                    chat.sender !== currentChatting.chatList[index + 1].sender)
+                }
+                /* 감정 달기 관련 */
+                onMouseDown={(e) => handleLongPress(index, e)}
+                isSelected={selectedMessage === index}
+                selectedEmotion={selectedEmotions[index] || null}
+                emotionBoxRef={emotionBoxRef}
+              />
+            ),
+          )
+        ) : (
+          <div>첫 대화입니다.</div>
         )}
       </div>
       <InputBox sendChat={sendChat} />
