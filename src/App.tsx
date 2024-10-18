@@ -32,7 +32,10 @@ function App() {
                     element={<FollowListPage />}
                   ></Route>
                   <Route path={"/chatlist"} element={<ChatListPage />}></Route>
-                  <Route path={"/chatroom"} element={<ChatRoomPage />}></Route>
+                  <Route
+                    path={"/chatroom/:chatroomId"}
+                    element={<ChatRoomPage />}
+                  ></Route>
                 </Routes>
               </Router>
             </div>

@@ -6,8 +6,6 @@ import { ReactComponent as CameraIcon } from "../../assets/icons/camera_gray.svg
 // data & recoil
 import userData from "../../data/UserData.json";
 import { chattingInterface } from "../../types/interface";
-import { useSetRecoilState } from "recoil";
-import { currentChattingState, userState } from "../../recoil/atom";
 
 interface ChatListItemProps {
   chatting: chattingInterface;
@@ -23,18 +21,9 @@ const ChatListItem: React.FC<ChatListItemProps> = ({ chatting }) => {
 
   const navigate = useNavigate();
 
-  const setCurrentChatting = useSetRecoilState(currentChattingState);
-  const setCurrentUsers = useSetRecoilState(userState);
-
+  // const setCurrentChatting = useSetRecoilState(currentChattingState);
   const gotoChatRoom = () => {
-    setCurrentChatting(chatting);
-
-    const otherUserId = chatting.users.find((userId) => userId !== 0) || 1;
-    setCurrentUsers((prev) => ({
-      me: userData.users[0],
-      other: userData.users[otherUserId],
-    }));
-    navigate("/chatroom");
+    navigate(`/chatroom/${followerId}`);
   };
 
   return (
