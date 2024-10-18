@@ -20,9 +20,9 @@ export const chattingState = atom<chattingInterface[]>({
   effects_UNSTABLE: [persistAtom],
 });
 
-export const currentChattingState = atom<chattingInterface>({
+export const currentChattingState = atom<chattingInterface | null>({
   key: "currentChattingState",
-  default: chattingData.chattings[0],
+  default: null,
   effects_UNSTABLE: [persistAtom],
 });
 

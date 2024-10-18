@@ -11,7 +11,7 @@ export interface chatInterface {
 }
 
 export interface chattingInterface {
-  id: number;
+  id: number | undefined;
   users: number[];
   chatList: chatInterface[];
 }

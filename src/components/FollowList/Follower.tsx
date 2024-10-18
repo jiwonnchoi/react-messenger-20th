@@ -20,17 +20,22 @@ const Follower: React.FC<FollowerProps> = ({ user }) => {
   const setCurrentUsers = useSetRecoilState(userState);
 
   const gotoChatRoom = () => {
-    const selectedChatting =
-      chattings.find(
-        (chat) => chat.users.includes(0) && chat.users.includes(user.id),
-      ) || chattings[0]; // 기존 대화 없을 때 기본 화면 처리하기
-    setCurrentChatting(selectedChatting);
+    const selectedChatting = chattings.find(
+      (chat) => chat.users.includes(0) && chat.users.includes(user.id),
+    ); // 기존 대화 없을 때 기본 화면 처리하기
 
+    if (selectedChatting) {
+      setCurrentChatting(selectedChatting);
+    } else {
+      setCurrentChatting(null);
+      console.log(selectedChatting);
+      console.log(currentChattingState);
+    }
     setCurrentUsers(() => ({
       me: userData.users[0],
       other: userData.users[user.id],
     }));
-    navigate("/chatroom");
+    navigate(`/chatroom/${user.id}`);
   };
 
   return (

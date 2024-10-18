@@ -11,9 +11,13 @@ const useChatSend = () => {
   const { chatroomId } = useParams();
   const followerId: number = parseInt(chatroomId || "1", 10);
 
-  //const currentChatting = chatting[0]; // 기본으로 첫 번째 대화 가져오기
   const currentChatting =
-    chatting.find((chat) => chat.users.includes(followerId)) || chatting[0];
+    chatting.find((chat) => chat.users.includes(followerId)) ||
+    ({
+      id: chatroomId,
+      users: [0, followerId],
+      chatList: [],
+    } as chattingInterface);
 
   // 메시지 전송 함수
   const sendChat = (newMessage: string) => {
@@ -27,12 +31,23 @@ const useChatSend = () => {
     //     index === 0 ? { ...chat, chatList: updatedChatting } : chat,
     //   ),
     // );
+    // setChatting((prevChatting: chattingInterface[]) =>
+    //   prevChatting.map((chat) =>
+    //     chat.id === currentChatting.id
+    //       ? { ...chat, chatList: updatedChatting }
+    //       : chat,
+    //   ),
+    // );
     setChatting((prevChatting: chattingInterface[]) =>
-      prevChatting.map((chat) =>
-        chat.id === currentChatting.id
-          ? { ...chat, chatList: updatedChatting }
-          : chat,
-      ),
+      prevChatting.find((chat) => chat.id === currentChatting.id)
+        ? // 기존 대화 업데이트
+          prevChatting.map((chat) =>
+            chat.id === currentChatting.id
+              ? { ...chat, chatList: updatedChatting }
+              : chat,
+          )
+        : // 새 대화 추가 (새로운 대화를 chattingState에 추가)
+          [...prevChatting, { ...currentChatting, chatList: updatedChatting }],
     );
   };
 

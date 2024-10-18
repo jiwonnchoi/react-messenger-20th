@@ -16,6 +16,7 @@ const ChatListContents = () => {
   const chattingFollowers = chattings.filter((chat) =>
     chat.users.some((id) => id !== myId),
   );
+  //console.log(chattingFollowers.map((chatting) => chatting.users));
 
   return (
     <>
