@@ -64,7 +64,35 @@ const Chattings = () => {
             ),
           )
         ) : (
-          <div>첫 대화입니다.</div>
+          <>
+            <div className="mt-[3.69rem] flex w-full flex-col items-center gap-[0.44rem]">
+              <img
+                className="h-[5.875rem] w-[5.875rem] rounded-full"
+                src={require(
+                  "../../assets/images/" + users.other.profileImg + ".svg",
+                )} //props로 넘겨온 상대경로는 깨짐
+              />
+
+              <div className="text-lg font-semibold text-Gray900">
+                {users.other.userName}
+              </div>
+              <div className="text-xs text-Gray900">{users.other.userId}</div>
+              <div className="text-xs text-Gray500">
+                735 followers 174 posts
+              </div>
+              <div className="text-xs text-Gray500">
+                hongik_university also follows
+              </div>
+              <span className="mt-[1.06rem] flex flex-row justify-center gap-[0.31rem]">
+                <span className="flex w-[10.625rem] justify-center rounded-[0.625rem] bg-Gray300 text-[0.9375rem]">
+                  Inquire
+                </span>
+                <span className="flex w-[10.625rem] justify-center rounded-[0.625rem] bg-Gray300 text-[0.9375rem]">
+                  View profile
+                </span>
+              </span>
+            </div>
+          </>
         )}
       </div>
       <InputBox sendChat={sendChat} />
