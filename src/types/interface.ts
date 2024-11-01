@@ -8,6 +8,7 @@ export interface userInterface {
 export interface chatInterface {
   message: string;
   sender: number;
+  timestamp: string;
 }
 
 export interface chattingInterface {

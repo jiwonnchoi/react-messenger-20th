@@ -6,6 +6,7 @@ import { ReactComponent as CameraIcon } from "../../assets/icons/camera_gray.svg
 // data & recoil
 import userData from "../../data/UserData.json";
 import { chattingInterface } from "../../types/interface";
+import useHandleTime from "../../hooks/useHandleTime";
 
 interface ChatListItemProps {
   chatting: chattingInterface;
@@ -19,6 +20,9 @@ const ChatListItem: React.FC<ChatListItemProps> = ({ chatting }) => {
   const lastMessage = lastMessageContent?.message.startsWith("data:image/")
     ? "이미지가 전송됨" // 이미지 파일일 경우 대체 텍스트
     : lastMessageContent.message;
+
+  //
+  const { lastModified } = useHandleTime(lastMessageContent);
 
   const navigate = useNavigate();
 
@@ -47,7 +51,7 @@ const ChatListItem: React.FC<ChatListItemProps> = ({ chatting }) => {
                 {lastMessage}
               </span>
               <span className="text-[0.8125rem] tracking-tighter text-Gray500">
-                마지막시각
+                {lastModified}
               </span>
             </div>
           </span>

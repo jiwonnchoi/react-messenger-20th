@@ -44,6 +44,7 @@ const useChatSend = () => {
     const newMessage: chatInterface = {
       message: messageContent,
       sender: users.me.id,
+      timestamp: new Date().toISOString(),
     };
 
     const updatedChatting = [...currentChatting.chatList, newMessage];
