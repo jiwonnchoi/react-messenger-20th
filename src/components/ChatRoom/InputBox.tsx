@@ -8,12 +8,14 @@ import { ReactComponent as GIFIcon } from "../../assets/icons/gif.svg";
 import { ReactComponent as SendButton } from "../../assets/icons/send_button.svg";
 
 interface InputBoxProps {
-  sendChat: (message: string) => void;
+  sendChat: (message: string | File, type: "text" | "image") => void;
 }
 
 const InputBox: React.FC<InputBoxProps> = ({ sendChat }) => {
   const [inputText, setInputText] = useState(""); // 입력한 텍스트
   const heightRef = useRef<HTMLTextAreaElement>(null); // 입력창 높이 지정
+  // const [uploadedImage, setUploadedImage] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // 입력 내용 반영
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -24,12 +26,28 @@ const InputBox: React.FC<InputBoxProps> = ({ sendChat }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (inputText.trim() !== "") {
-      sendChat(inputText);
+      sendChat(inputText, "text");
       setInputText(""); // 입력창 내용 초기화
       if (heightRef.current) {
         heightRef.current.style.height = "auto"; // 전송 후 입력창 높이 초기화
       }
     }
+  };
+
+  // 이미지 업로드
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      // setUploadedImage(file);
+      sendChat(file, "image");
+      console.log("image ", file);
+    }
+  };
+
+  // PictureIcon 클릭 시 파일 업로드 창 열기
+  const handlePictureIconClick = () => {
+    fileInputRef.current?.click();
+    console.log("click");
   };
 
   // 입력 내용 엔터키로 전송 (shift + Enter로 줄바꿈 가능)
@@ -68,7 +86,17 @@ const InputBox: React.FC<InputBoxProps> = ({ sendChat }) => {
           {inputText.trim() === "" ? (
             <>
               <MicIcon />
-              <PictureIcon />
+              <PictureIcon
+                onClick={handlePictureIconClick}
+                className="cursor-pointer"
+              />
+              <input
+                type="file"
+                accept="image/*"
+                ref={fileInputRef}
+                onChange={handleImageUpload}
+                className="hidden"
+              />
               <GIFIcon />
             </>
           ) : (

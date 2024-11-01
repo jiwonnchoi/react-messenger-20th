@@ -15,9 +15,10 @@ const ChatListItem: React.FC<ChatListItemProps> = ({ chatting }) => {
   const followerId = chatting.users.filter((id) => id !== 0)[0];
   const follower = userData.users.filter((user) => user.id === followerId)[0];
 
-  const lastMessage =
-    chatting.chatList[chatting.chatList.length - 1]?.message ||
-    "이전 대화가 없습니다";
+  const lastMessageContent = chatting.chatList[chatting.chatList.length - 1];
+  const lastMessage = lastMessageContent?.message.startsWith("data:image/")
+    ? "이미지가 전송됨" // 이미지 파일일 경우 대체 텍스트
+    : lastMessageContent.message;
 
   const navigate = useNavigate();
 

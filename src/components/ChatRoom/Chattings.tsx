@@ -17,6 +17,7 @@ const Chattings = () => {
 
   // 하단으로 자동 스크롤
   const scrollRef = useAutoScroll([currentChatting.chatList]);
+  console.log(currentChatting.chatList);
 
   // 감정 남기기
   const { handleLongPress, emotionBoxRef } = useEmotionBox(scrollRef);

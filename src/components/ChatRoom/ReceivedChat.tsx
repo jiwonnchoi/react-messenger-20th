@@ -35,6 +35,8 @@ const ReceivedChat: React.FC<ReceivedChatProps> = ({
   const showEmotionBox = useRecoilValue(emotionBoxState);
   const { selectEmotion } = useHandleEmotionSelect();
 
+  const isImageMessage = message.startsWith("data:image/");
+
   return (
     <>
       <div
@@ -66,9 +68,18 @@ const ReceivedChat: React.FC<ReceivedChatProps> = ({
           )}
 
           <div className="relative">
-            <div className="ml-2 mr-auto inline-flex max-w-[13.375rem] items-center break-all rounded-[1.25rem] bg-Chat_BG px-2.5 py-2 text-[0.9375rem] tracking-tighter text-white">
-              {message}
-            </div>
+            {isImageMessage ? (
+              <img
+                src={message}
+                alt="sent image"
+                className={`ml-auto mr-2 mt-[0.3125rem] w-[10.0625rem] rounded-[1.25rem] ${isLastChat ? "mb-[0.3125rem]" : ""}`}
+              />
+            ) : (
+              <div className="ml-2 mr-auto inline-flex max-w-[13.375rem] items-center break-all rounded-[1.25rem] bg-Chat_BG px-2.5 py-2 text-[0.9375rem] tracking-tighter text-white">
+                {message}
+              </div>
+            )}
+
             {selectedEmotion && (
               <>
                 <div
