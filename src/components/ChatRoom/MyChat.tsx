@@ -19,7 +19,7 @@ const MyChat: React.FC<MyChatProps> = ({
   return (
     <>
       <span
-        className={`mt-[0.3125rem] flex flex-row justify-end ${
+        className={`flex flex-row justify-end ${
           selectedEmotion ? "mb-2.5" : ""
         }`}
       >

@@ -42,8 +42,13 @@ const ChatListItem: React.FC<ChatListItemProps> = ({ chatting }) => {
             <div className="text-[0.8125rem] font-semibold tracking-tighter">
               {follower.userName}
             </div>
-            <div className="text-[0.8125rem] tracking-tighter text-Gray500">
-              {lastMessage}
+            <div className="flex flex-row justify-between">
+              <span className="text-[0.8125rem] tracking-tighter text-Gray500">
+                {lastMessage}
+              </span>
+              <span className="text-[0.8125rem] tracking-tighter text-Gray500">
+                마지막시각
+              </span>
             </div>
           </span>
           <CameraIcon className="h-6 w-6 flex-shrink-0" />

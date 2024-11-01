@@ -48,12 +48,23 @@ const useChatSend = () => {
 
     const updatedChatting = [...currentChatting.chatList, newMessage];
 
-    setChatting((prevChatting) =>
-      prevChatting.map((chat) =>
-        chat.id === currentChatting.id
-          ? { ...chat, chatList: updatedChatting }
-          : chat,
-      ),
+    // setChatting((prevChatting: chattingInterface[]) =>
+    //   prevChatting.map((chat) =>
+    //     chat.id === currentChatting.id
+    //       ? { ...chat, chatList: updatedChatting }
+    //       : chat,
+    //   ),
+    // );
+    setChatting((prevChatting: chattingInterface[]) =>
+      prevChatting.find((chat) => chat.id === currentChatting.id)
+        ? // 기존 대화 업데이트
+          prevChatting.map((chat) =>
+            chat.id === currentChatting.id
+              ? { ...chat, chatList: updatedChatting }
+              : chat,
+          )
+        : // 새 대화 추가 (새로운 대화를 chattingState에 추가)
+          [...prevChatting, { ...currentChatting, chatList: updatedChatting }],
     );
   };
 

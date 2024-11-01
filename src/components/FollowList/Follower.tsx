@@ -28,7 +28,7 @@ const Follower: React.FC<FollowerProps> = ({ user }) => {
       setCurrentChatting(selectedChatting);
     } else {
       setCurrentChatting(null);
-      console.log(selectedChatting);
+      console.log("selectedChatting: " + selectedChatting);
       console.log(currentChattingState);
     }
     setCurrentUsers(() => ({
