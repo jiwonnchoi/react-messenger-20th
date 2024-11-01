@@ -50,7 +50,11 @@ const MyContents = () => {
       <div className="mt-[1.28rem] flex w-full flex-col">
         <div className="flex flex-row justify-center gap-[9.19rem]">
           {tab.map((tab, index) => (
-            <span key={tab.id} onClick={() => handleTab(index)}>
+            <span
+              key={tab.id}
+              className="cursor-pointer"
+              onClick={() => handleTab(index)}
+            >
               {tab.icon}
             </span>
           ))}
