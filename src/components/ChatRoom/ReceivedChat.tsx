@@ -88,7 +88,7 @@ const ReceivedChat: React.FC<ReceivedChatProps> = ({
                   }}
                   className="absolute -bottom-2.5 left-2 z-[5] animate-bounce"
                 >
-                  <EmotionRemained emotionId={selectedEmotion} />
+                  <EmotionRemained emotionId={selectedEmotion} isMine={false} />
                 </div>
               </>
             )}

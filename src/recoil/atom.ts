@@ -4,7 +4,10 @@ import chattingData from "../data/ChattingData.json";
 import { recoilPersist } from "recoil-persist";
 import type { chattingInterface, userInterface } from "../types/interface";
 
-const { persistAtom } = recoilPersist();
+const { persistAtom } = recoilPersist({
+  key: "chattings",
+  storage: localStorage,
+});
 
 export const userState = atom<{ me: userInterface; other: userInterface }>({
   key: "userState",
@@ -41,4 +44,5 @@ export const selectedMessageState = atom<number | null>({
 export const selectedEmotionsState = atom<{ [key: number]: number }>({
   key: "selectedEmotionsState",
   default: {},
+  effects_UNSTABLE: [persistAtom],
 });

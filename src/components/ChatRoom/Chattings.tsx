@@ -44,6 +44,8 @@ const Chattings = () => {
                   (index < currentChatting.chatList.length - 1 &&
                     chat.sender !== currentChatting.chatList[index + 1].sender)
                 }
+                /*감정 관련 */
+                selectedEmotion={selectedEmotions[index] || null}
               />
             ) : (
               <ReceivedChat
