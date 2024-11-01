@@ -72,7 +72,7 @@ const ReceivedChat: React.FC<ReceivedChatProps> = ({
               <img
                 src={message}
                 alt="sent image"
-                className={`ml-auto mr-2 mt-[0.3125rem] w-[10.0625rem] rounded-[1.25rem] ${isLastChat ? "mb-[0.3125rem]" : ""}`}
+                className={`ml-2 mr-auto mt-[0.3125rem] w-[10.0625rem] rounded-[1.25rem] ${isLastChat ? "mb-[0.3125rem]" : ""}`}
               />
             ) : (
               <div className="ml-2 mr-auto inline-flex max-w-[13.375rem] items-center break-all rounded-[1.25rem] bg-Chat_BG px-2.5 py-2 text-[0.9375rem] tracking-tighter text-white">

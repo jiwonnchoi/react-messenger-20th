@@ -40,8 +40,6 @@ const useEmotionBox = (scrollRef: React.RefObject<HTMLDivElement>) => {
           // 가장 상단이라 더 스크롤되지 않는 경우
           if (emotionBoxRect.top - emotionBoxHeight < topBarHeight) {
             emotionBoxRef.current.style.top = `${50}px`;
-            //emotionBoxRef.current.style.top = `${topBarHeight}px`;
-            //emotionBoxRef.current.style.position = "fixed";
           } else {
             // 원래 위치 복귀
             emotionBoxRef.current.style.top = "-67px";
