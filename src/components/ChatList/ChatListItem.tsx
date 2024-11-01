@@ -43,7 +43,7 @@ const ChatListItem: React.FC<ChatListItemProps> = ({ chatting }) => {
               {follower.userName}
             </div>
             <div className="flex flex-row justify-between">
-              <span className="text-[0.8125rem] tracking-tighter text-Gray500">
+              <span className="h-[19.5px] w-[163px] overflow-hidden text-ellipsis whitespace-nowrap text-[0.8125rem] tracking-tighter text-Gray500">
                 {lastMessage}
               </span>
               <span className="text-[0.8125rem] tracking-tighter text-Gray500">
