@@ -16,7 +16,7 @@ const MyContents = () => {
       id: 1,
       icon: currentTab == 0 ? <GridIcon /> : <GridIcon2 />,
       content: (
-        <div className="flex w-full flex-row justify-between">
+        <div className="flex w-full flex-row justify-between px-[0.05rem]">
           <img src={content1} />
           <img src={content2} />
           <img src={content3} />
@@ -32,7 +32,7 @@ const MyContents = () => {
           <div className="mt-2 text-lg font-bold">
             내가 태그된 사진과 동영상
           </div>
-          <div className="mt-2 text-xs">
+          <div className="mt-2 text-center text-xs text-Gray600">
             사람들이 회원님을 사진 및 동영상에 태그하면
             <br />
             태그된 사진 및 동영상이 여기에 표시됩니다.
@@ -60,9 +60,26 @@ const MyContents = () => {
           ))}
         </div>
         <div
-          className={`mt-[0.31rem] flex h-0.5 w-[4.011rem] bg-Gray900 ${currentTab === 0 ? "ml-[4.35rem]" : "ml-[15rem]"}`}
+          className="ml-[4.35rem] mt-[0.31rem] h-0.5 w-[4.011rem] bg-Gray900 transition-transform duration-300"
+          style={{
+            transform:
+              currentTab === 0 ? "translateX(0)" : "translateX(10.65rem)",
+          }}
         ></div>
-        <div>{tab[currentTab].content}</div>
+        {/* <div>{tab[currentTab].content}</div> */}
+        <div className="w-full overflow-hidden">
+          <div
+            className="transition-transform duration-300"
+            style={{
+              transform: `translateX(-${currentTab * 50}%)`,
+              display: "flex",
+              width: "200%",
+            }}
+          >
+            <div className="w-full">{tab[0].content}</div>
+            <div className="w-full">{tab[1].content}</div>
+          </div>
+        </div>
       </div>
     </>
   );
