@@ -7,7 +7,7 @@ import { ReactComponent as SearchIcon } from "../../assets/icons/search.svg";
 // reoil
 import { useRecoilValue } from "recoil";
 import { chattingState, userState } from "../../recoil/atom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import userData from "../../data/UserData.json";
 
@@ -17,7 +17,15 @@ const ChatListContents = () => {
   const myId = user.me.id;
 
   const [searchInput, setSearchInput] = useState("");
-  const [pinnedChatIds, setPinnedChatIds] = useState<number[]>([]); // 고정된 채팅 id 배열
+  const [pinnedChatIds, setPinnedChatIds] = useState<number[]>(() => {
+    const storedPinnedChatIds = localStorage.getItem("pinnedChatIds");
+    return storedPinnedChatIds ? JSON.parse(storedPinnedChatIds) : [];
+  });
+
+  useEffect(() => {
+    // pinnedChatIds 변경 시 로컬 스토리지에 저장
+    localStorage.setItem("pinnedChatIds", JSON.stringify(pinnedChatIds));
+  }, [pinnedChatIds]);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value);
