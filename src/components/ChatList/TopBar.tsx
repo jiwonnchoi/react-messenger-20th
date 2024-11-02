@@ -1,8 +1,8 @@
+import { useNavigate } from "react-router-dom";
 // icons
 import { ReactComponent as BackIcon } from "../../assets/icons/back.svg";
 import { ReactComponent as ArrowIcon } from "../../assets/icons/arrow.svg";
 import { ReactComponent as EditIcon } from "../../assets/icons/edit.svg";
-import { useNavigate } from "react-router-dom";
 
 const TopBar = () => {
   const navigate = useNavigate();

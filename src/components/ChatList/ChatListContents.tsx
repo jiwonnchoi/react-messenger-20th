@@ -16,7 +16,13 @@ const ChatListContents = () => {
   const user = useRecoilValue(userState);
   const myId = user.me.id;
 
+  // 검색 기능
   const [searchInput, setSearchInput] = useState("");
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(e.target.value);
+  };
+
+  // 상단 고정 기능
   const [pinnedChatIds, setPinnedChatIds] = useState<number[]>(() => {
     const storedPinnedChatIds = localStorage.getItem("pinnedChatIds");
     return storedPinnedChatIds ? JSON.parse(storedPinnedChatIds) : [];
@@ -26,10 +32,6 @@ const ChatListContents = () => {
     // pinnedChatIds 변경 시 로컬 스토리지에 저장
     localStorage.setItem("pinnedChatIds", JSON.stringify(pinnedChatIds));
   }, [pinnedChatIds]);
-
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(e.target.value);
-  };
 
   const handlePinToggle = (id: number | undefined) => {
     if (id !== undefined) {
@@ -46,8 +48,8 @@ const ChatListContents = () => {
     .filter((chat) =>
       chat.users.some((userId) => {
         if (userId !== myId) {
-          const otherUser = userData.users.find((user) => user.id === userId);
-          return otherUser?.userName.toLocaleLowerCase().includes(searchInput);
+          const otherUser = userData.users.find((user) => user.id === userId); // 대화가 존재하는 사용자와의 채팅 필터
+          return otherUser?.userName.toLocaleLowerCase().includes(searchInput); // 검색어에 부합하는 사용자와의 채팅 필터
         }
         return false;
       }),

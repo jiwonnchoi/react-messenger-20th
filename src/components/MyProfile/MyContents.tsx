@@ -14,7 +14,7 @@ const MyContents = () => {
   const tab = [
     {
       id: 1,
-      icon: currentTab == 0 ? <GridIcon /> : <GridIcon2 />,
+      icon: currentTab == 0 ? <GridIcon /> : <GridIcon2 />, // 2가 선택되지 않았을 때의 회색 아이콘
       content: (
         <div className="flex w-full flex-row justify-between px-[0.05rem]">
           <img src={content1} />
@@ -41,6 +41,7 @@ const MyContents = () => {
       ),
     },
   ];
+
   const handleTab = (index: number) => {
     setCurrentTab(index);
   };

@@ -14,7 +14,6 @@ interface InputBoxProps {
 const InputBox: React.FC<InputBoxProps> = ({ sendChat }) => {
   const [inputText, setInputText] = useState(""); // 입력한 텍스트
   const heightRef = useRef<HTMLTextAreaElement>(null); // 입력창 높이 지정
-  // const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // 입력 내용 반영

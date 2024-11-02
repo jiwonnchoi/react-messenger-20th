@@ -69,12 +69,14 @@ const ReceivedChat: React.FC<ReceivedChatProps> = ({
 
           <div className="relative">
             {isImageMessage ? (
+              // 이미지 메시지인 경우
               <img
                 src={message}
                 alt="sent image"
                 className={`ml-2 mr-auto w-[10.0625rem] rounded-[1.25rem] ${isLastChat ? "mb-[0.3125rem]" : ""}`}
               />
             ) : (
+              // 텍스트 메시지인 경우
               <div className="ml-2 mr-auto inline-flex max-w-[13.375rem] items-center break-all rounded-[1.25rem] bg-Chat_BG px-2.5 py-2 text-[0.9375rem] tracking-tighter text-white">
                 {message}
               </div>

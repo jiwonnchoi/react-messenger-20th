@@ -2,8 +2,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import { BrowserView, MobileView } from "react-device-detect";
 
+// common
 import { ReactComponent as HomeIndicator } from "./assets/images/home_indicator.svg";
 import StatusBar from "./components/common/StatusBar";
+
+// pages
 import MyProfilePage from "./pages/MyProfilePage";
 import FollowListPage from "./pages/FollowListPage";
 import ChatListPage from "./pages/ChatListPage";

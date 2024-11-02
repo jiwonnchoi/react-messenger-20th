@@ -11,7 +11,6 @@ import { selectedEmotionsState, selectedMessageState } from "../../recoil/atom";
 import useAutoScroll from "../../hooks/useAutoScroll";
 import useChatSend from "../../hooks/useChatSend";
 import useEmotionBox from "../../hooks/useEmotionBox";
-import { useEffect, useRef } from "react";
 
 const Chattings = () => {
   const { users, currentChatting, sendChat } = useChatSend();
@@ -21,16 +20,8 @@ const Chattings = () => {
 
   // 감정 남기기
   const { handleLongPress, emotionBoxRef } = useEmotionBox(scrollRef);
-
   const selectedMessage = useRecoilValue(selectedMessageState);
   const selectedEmotions = useRecoilValue(selectedEmotionsState);
-
-  // const dummyRef = useRef<HTMLDivElement | null>(null); // 마지막 메시지 위치 참조 ref
-  // useEffect(() => {
-  //   if (dummyRef.current) {
-  //     dummyRef.current.scrollIntoView({ behavior: "smooth" });
-  //   }
-  // }, [currentChatting.chatList]);
 
   return (
     <div className="flex flex-1 flex-col overflow-hidden">
@@ -39,6 +30,7 @@ const Chattings = () => {
         className="mb-12 ml-[0.56rem] flex flex-1 flex-col overflow-y-auto"
       >
         {currentChatting.chatList.length > 0 ? (
+          // 이전 대화내역이 있을 때
           currentChatting.chatList.map((chat, index) =>
             chat.sender === users.me.id ? (
               <MyChat
@@ -71,12 +63,13 @@ const Chattings = () => {
             ),
           )
         ) : (
+          // 이전 대화내역이 없을 때
           <div className="mt-[3.69rem] flex w-full flex-col items-center gap-[0.44rem]">
             <img
               className="h-[5.875rem] w-[5.875rem] rounded-full"
               src={require(
                 "../../assets/images/" + users.other.profileImg + ".svg",
-              )} //props로 넘겨온 상대경로는 깨짐
+              )}
             />
 
             <div className="text-lg font-semibold text-Gray900">

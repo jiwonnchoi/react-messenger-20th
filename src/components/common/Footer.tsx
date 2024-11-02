@@ -1,3 +1,6 @@
+import { useLocation, useNavigate } from "react-router-dom";
+
+// icons
 import { ReactComponent as HomeIcon } from "../../assets/icons/home.svg";
 import { ReactComponent as SearchIcon } from "../../assets/icons/search.svg";
 import { ReactComponent as MessageIcon } from "../../assets/icons/message.svg";
@@ -5,7 +8,6 @@ import { ReactComponent as MessageIconActive } from "../../assets/icons/message_
 import { ReactComponent as ProfileIcon } from "../../assets/icons/profile.svg";
 import { ReactComponent as ProfileIconActive } from "../../assets/icons/profile_active.svg";
 import { ReactComponent as MoreIcon } from "../../assets/icons/more.svg";
-import { useLocation, useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const navigate = useNavigate();

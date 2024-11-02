@@ -1,11 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { userInterface } from "../../types/interface";
+
+// recoil
 import { useRecoilState, useSetRecoilState } from "recoil";
 import {
   chattingState,
   currentChattingState,
   userState,
 } from "../../recoil/atom";
+
 import userData from "../../data/UserData.json";
 
 interface FollowerProps {
@@ -22,20 +25,19 @@ const Follower: React.FC<FollowerProps> = ({ user }) => {
   const gotoChatRoom = () => {
     const selectedChatting = chattings.find(
       (chat) => chat.users.includes(0) && chat.users.includes(user.id),
-    ); // 기존 대화 없을 때 기본 화면 처리하기
+    );
 
     if (selectedChatting) {
-      setCurrentChatting(selectedChatting);
+      setCurrentChatting(selectedChatting); // 현재 채팅을 지정하고
     } else {
       setCurrentChatting(null);
-      console.log("selectedChatting: " + selectedChatting);
-      console.log(currentChattingState);
     }
     setCurrentUsers(() => ({
       me: userData.users[0],
       other: userData.users[user.id],
     }));
-    navigate(`/chatroom/${user.id}`);
+
+    navigate(`/chatroom/${user.id}`); // 상대방(other)의 id에 따라 동적 라우팅
   };
 
   return (
