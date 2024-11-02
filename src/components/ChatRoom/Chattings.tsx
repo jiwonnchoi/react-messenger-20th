@@ -24,7 +24,7 @@ const Chattings = () => {
   const selectedEmotions = useRecoilValue(selectedEmotionsState);
 
   return (
-    <div className="flex min-h-full flex-1 flex-col overflow-hidden">
+    <div className="flex min-h-[38.9375rem] flex-1 flex-col overflow-hidden">
       <div
         ref={scrollRef}
         className="mb-12 ml-[0.56rem] flex flex-1 flex-col overflow-y-auto"
