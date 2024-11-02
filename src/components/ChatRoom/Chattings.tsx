@@ -25,18 +25,18 @@ const Chattings = () => {
   const selectedMessage = useRecoilValue(selectedMessageState);
   const selectedEmotions = useRecoilValue(selectedEmotionsState);
 
-  const dummyRef = useRef<HTMLDivElement | null>(null); // 마지막 메시지 위치를 참조할 ref
-  useEffect(() => {
-    if (dummyRef.current) {
-      dummyRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [currentChatting.chatList]);
+  // const dummyRef = useRef<HTMLDivElement | null>(null); // 마지막 메시지 위치 참조 ref
+  // useEffect(() => {
+  //   if (dummyRef.current) {
+  //     dummyRef.current.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // }, [currentChatting.chatList]);
 
   return (
     <div className="flex flex-1 flex-col overflow-hidden">
       <div
         ref={scrollRef}
-        className="ml-[0.56rem] flex flex-1 flex-col overflow-y-auto"
+        className="mb-12 ml-[0.56rem] flex flex-1 flex-col overflow-y-auto"
       >
         {currentChatting.chatList.length > 0 ? (
           currentChatting.chatList.map((chat, index) =>
@@ -97,7 +97,6 @@ const Chattings = () => {
             </span>
           </div>
         )}
-        <div ref={dummyRef} style={{ height: "3rem" }} />
       </div>
       <InputBox sendChat={sendChat} />
     </div>

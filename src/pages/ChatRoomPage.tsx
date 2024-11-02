@@ -26,9 +26,9 @@ const ChatRoomPage = () => {
 
   return (
     <>
-      <div className="relative flex h-[100%] w-[23.4375rem] flex-col bg-white">
+      <div className="relative flex h-full w-[23.4375rem] flex-col bg-white">
         <TopBar />
-        <div className="overflow-y-auto">
+        <div className="flex flex-col overflow-y-auto">
           <Chattings />
         </div>
 
