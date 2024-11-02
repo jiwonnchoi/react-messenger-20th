@@ -11,6 +11,7 @@ import { selectedEmotionsState, selectedMessageState } from "../../recoil/atom";
 import useAutoScroll from "../../hooks/useAutoScroll";
 import useChatSend from "../../hooks/useChatSend";
 import useEmotionBox from "../../hooks/useEmotionBox";
+import { useEffect, useRef } from "react";
 
 const Chattings = () => {
   const { users, currentChatting, sendChat } = useChatSend();
@@ -24,14 +25,18 @@ const Chattings = () => {
   const selectedMessage = useRecoilValue(selectedMessageState);
   const selectedEmotions = useRecoilValue(selectedEmotionsState);
 
-  // 이전 대화 존재 확인
-  const isFirst = currentChatting.chatList.length === 0;
+  const dummyRef = useRef<HTMLDivElement | null>(null); // 마지막 메시지 위치를 참조할 ref
+  useEffect(() => {
+    if (dummyRef.current) {
+      dummyRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [currentChatting.chatList]);
 
   return (
-    <>
+    <div className="flex flex-1 flex-col overflow-hidden">
       <div
         ref={scrollRef}
-        className="ml-[0.56rem] flex h-[38.9375rem] flex-col overflow-y-auto"
+        className="ml-[0.56rem] flex flex-1 flex-col overflow-y-auto"
       >
         {currentChatting.chatList.length > 0 ? (
           currentChatting.chatList.map((chat, index) =>
@@ -66,39 +71,36 @@ const Chattings = () => {
             ),
           )
         ) : (
-          <>
-            <div className="mt-[3.69rem] flex w-full flex-col items-center gap-[0.44rem]">
-              <img
-                className="h-[5.875rem] w-[5.875rem] rounded-full"
-                src={require(
-                  "../../assets/images/" + users.other.profileImg + ".svg",
-                )} //props로 넘겨온 상대경로는 깨짐
-              />
+          <div className="mt-[3.69rem] flex w-full flex-col items-center gap-[0.44rem]">
+            <img
+              className="h-[5.875rem] w-[5.875rem] rounded-full"
+              src={require(
+                "../../assets/images/" + users.other.profileImg + ".svg",
+              )} //props로 넘겨온 상대경로는 깨짐
+            />
 
-              <div className="text-lg font-semibold text-Gray900">
-                {users.other.userName}
-              </div>
-              <div className="text-xs text-Gray900">{users.other.userId}</div>
-              <div className="text-xs text-Gray500">
-                735 followers 174 posts
-              </div>
-              <div className="text-xs text-Gray500">
-                hongik_university also follows
-              </div>
-              <span className="mt-[1.06rem] flex flex-row justify-center gap-[0.31rem]">
-                <span className="flex w-[10.625rem] justify-center rounded-[0.625rem] bg-Gray300 text-[0.9375rem]">
-                  Inquire
-                </span>
-                <span className="flex w-[10.625rem] justify-center rounded-[0.625rem] bg-Gray300 text-[0.9375rem]">
-                  View profile
-                </span>
-              </span>
+            <div className="text-lg font-semibold text-Gray900">
+              {users.other.userName}
             </div>
-          </>
+            <div className="text-xs text-Gray900">{users.other.userId}</div>
+            <div className="text-xs text-Gray500">735 followers 174 posts</div>
+            <div className="text-xs text-Gray500">
+              hongik_university also follows
+            </div>
+            <span className="mt-[1.06rem] flex flex-row justify-center gap-[0.31rem]">
+              <span className="flex w-[10.625rem] justify-center rounded-[0.625rem] bg-Gray300 text-[0.9375rem]">
+                Inquire
+              </span>
+              <span className="flex w-[10.625rem] justify-center rounded-[0.625rem] bg-Gray300 text-[0.9375rem]">
+                View profile
+              </span>
+            </span>
+          </div>
         )}
+        <div ref={dummyRef} style={{ height: "3rem" }} />
       </div>
       <InputBox sendChat={sendChat} />
-    </>
+    </div>
   );
 };
 export default Chattings;

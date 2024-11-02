@@ -22,7 +22,10 @@ function App() {
         <BrowserView>
           <div className="flex min-h-screen w-dvw flex-col items-center justify-center">
             <StatusBar />
-            <div className="relative w-[375px] bg-white" style={{ height }}>
+            <div
+              className="flex w-[375px] flex-col bg-white"
+              style={{ height }}
+            >
               <Router>
                 <Routes>
                   <Route path={"/"} element={<MyProfilePage />}></Route>
@@ -43,7 +46,10 @@ function App() {
         </BrowserView>
         {/*모바일 뷰*/}
         <MobileView>
-          <div className="relative w-[375px] bg-white" style={{ height }}>
+          <div
+            className="relative flex w-[375px] flex-col bg-white"
+            style={{ height }}
+          >
             <Router>
               <Routes>
                 <Route path={"/"} element={<MyProfilePage />}></Route>
