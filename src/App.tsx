@@ -43,7 +43,22 @@ function App() {
         </BrowserView>
         {/*모바일 뷰*/}
         <MobileView>
-          <ChatRoomPage />
+          <div className="relative w-[375px] bg-white" style={{ height }}>
+            <Router>
+              <Routes>
+                <Route path={"/"} element={<MyProfilePage />}></Route>
+                <Route
+                  path={"/followlist"}
+                  element={<FollowListPage />}
+                ></Route>
+                <Route path={"/chatlist"} element={<ChatListPage />}></Route>
+                <Route
+                  path={"/chatroom/:chatroomId"}
+                  element={<ChatRoomPage />}
+                ></Route>
+              </Routes>
+            </Router>
+          </div>
         </MobileView>
       </RecoilRoot>
     </>
