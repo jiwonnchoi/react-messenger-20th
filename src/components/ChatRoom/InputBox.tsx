@@ -75,7 +75,7 @@ const InputBox: React.FC<InputBoxProps> = ({ sendChat }) => {
         <textarea
           value={inputText}
           onChange={handleChange}
-          onKeyDown={handleEnterSubmit}
+          onKeyPress={handleEnterSubmit}
           ref={heightRef}
           placeholder="Send a message"
           className="w-40 flex-grow select-none resize-none bg-transparent caret-[#0584fe] outline-none"
